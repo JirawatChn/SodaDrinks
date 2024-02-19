@@ -1,9 +1,12 @@
 {
-  "name": "soda",
+  "name": "SodaDrinks",
   "private": true,
   "version": "0.0.0",
+  "homepage": "https:/JirawatChn.github.io/SodaDrinks/",
   "type": "module",
   "scripts": {
+    "predeploy" : "npm run build",
+    "deploy" : "gh-pages -d dist",
     "dev": "vite --host",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",

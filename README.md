@@ -1,8 +1,15 @@
-# React + Vite
+# SodaDrinks Demo Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Developer : 
 
-Currently, two official plugins are available:
+Jirawat Chanasit
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This is SodaDrinks Demo Website
+
+Product Page : ดึงข้อมูลมาแสดงในรูปแบบตารางได้
+
+Order Page : ดึงข้อมูลมาแสดงในรูปแบบตารางได้ , สามารถเพิ่ม,ลบ,ยืนยันได้ (Demo)
+
+Try This Demo Website
+
+[https://jirawatchn.github.io/SodaDrinks/](https://jirawatchn.github.io/SodaDrinks/)

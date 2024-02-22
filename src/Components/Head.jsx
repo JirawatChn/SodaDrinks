@@ -1,7 +1,11 @@
 import { useEffect, useState } from "react";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars} from '@fortawesome/free-solid-svg-icons';
 import { Notification, Profile } from "./dropdown";
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import NavDropdown from 'react-bootstrap/NavDropdown';
+import Dropdown from 'react-bootstrap/Dropdown';
+
 
 export const Head = ({ topbar }) => {
 
@@ -16,24 +20,36 @@ export const Head = ({ topbar }) => {
 
     return (
         <div>
-            <nav className="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+            <Navbar expand="lg" variant="light" bg="white" className="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                <Navbar.Brand style={{ display: 'flex', alignItems: 'center', fontWeight: 'bold', color: 'black', fontSize: '20px' }}>
+                    <span style={{ marginRight: 'auto' }}>
+                        <i className="bi bi-justify" id="sidebarToggle"></i>
+                    </span>
+                    <span style={{ marginLeft: '20px' }}>{topbar}</span>
+                </Navbar.Brand>
+                <Navbar.Toggle />
+                <Navbar.Collapse className="justify-content-end navbar-nav ml-auto">
 
-                <FontAwesomeIcon style={{ color: '#63468E', fontSize: '30px' }} id="sidebarToggle" icon={faBars}  onClick={handleSidebarToggle}/>
+                    <Navbar.Text className="nav-item dropdown no-arrow mx-1">
+                        <a id="alertsDropdown"> 
+                            <i className="bi bi-bell-fill"></i>
+                            <span className="badge badge-danger badge-counter">2</span>
+                        </a>
+                    </Navbar.Text>
 
-                <div style={{ paddingLeft: '20px', fontWeight: 'bold', color: 'black', fontSize: '20px' }}>
-                    <p>{topbar}</p>
-                </div>
+                    <Navbar.Text>
+                        <div className="divider d-none d-sm-block" ></div>
+                    </Navbar.Text>
 
-                <ul className="navbar-nav ml-auto">
+                    <Navbar.Text className="nav-item dropdown no-arrow" >
+                        <a id="userDropdown" >
+                            <span className="mr-2 d-none d-lg-inline text-gray-900 small">Admin</span>
+                            <i className="bi bi-person-fill"></i>
+                        </a>
+                    </Navbar.Text>
 
-                    <Notification/> 
-
-                    <div className="topbar-divider d-none d-sm-block"></div>
-
-                    <Profile/>
-                    
-                </ul>
-            </nav>
+                </Navbar.Collapse>
+            </Navbar>
         </div>
     )
 }

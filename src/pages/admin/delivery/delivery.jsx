@@ -9,7 +9,7 @@ export const Delivery = () => {
 
     const Deliverybox = () =>{
         return(
-            <Total amount={0}/>
+            <Total amount={0} name='ขนส่ง'/>
         )
     }
     

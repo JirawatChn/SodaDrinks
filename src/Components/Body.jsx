@@ -1,4 +1,4 @@
-export const Body = ({heading,table}) => {
+export const Body = ({heading,table,show}) => {
     return (
         <div>
             <div className="container-fluid">

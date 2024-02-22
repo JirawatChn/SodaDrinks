@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { Body } from "../../../Components/Body"
 import { Head } from "../../../Components/Head"
 import { Layout } from "../../../Components/Layout"
@@ -6,43 +6,45 @@ import { Nav } from "../../../Components/Nav"
 import { fetch_DP } from "../../../Components/data/data_p"
 import { Footer } from "../../../Components/Footer"
 import { Total } from "../../../Components/table"
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
 
 
 export const Product = () => {
 
     const [dp, setDp] = useState([])
-        const [amount, setAmount] = useState(0)
-    
-        const [showtable, setShowtable] = useState(5)
-        const [curPage, setCurPage] = useState(1) // เริ่มหน้าเป็นหน้าที่ 1
-        const [numPages, setNumPages] = useState(0)
-        const [selectedValue, setSelectedValue] = useState(showtable);
-    
-        const PageValue1 = 5
-        const PageValue2 = 10
-        const PageValue3 = 20
+    const [amount, setAmount] = useState(0)
 
-        useEffect(() => {
-            const fetchData = fetch_DP()
-            setDp(fetchData)
-            setAmount(fetchData.length)
-        }, [])
-    
-        useEffect(() => {
-            setNumPages(Math.ceil(dp.length / showtable))
-        }, [dp, showtable]) // เมื่อมีการเปลี่ยนแปลงใน dp หรือ showtable
-    
-        useEffect(() => {
-            if (numPages === 0) {
-                setCurPage(0)
-            } else {
-                if (curPage === 0) {
-                    setCurPage(1)
-                } else if (curPage > numPages) {
-                    setCurPage(numPages)
-                }
+    const [showtable, setShowtable] = useState(5)
+    const [curPage, setCurPage] = useState(1) // เริ่มหน้าเป็นหน้าที่ 1
+    const [numPages, setNumPages] = useState(0)
+    const [selectedValue, setSelectedValue] = useState(showtable);
+
+    const PageValue1 = 5
+    const PageValue2 = 10
+    const PageValue3 = 20
+
+    useEffect(() => {
+        const fetchData = fetch_DP()
+        setDp(fetchData)
+        setAmount(fetchData.length)
+    }, [])
+
+    useEffect(() => {
+        setNumPages(Math.ceil(dp.length / showtable))
+    }, [dp, showtable]) // เมื่อมีการเปลี่ยนแปลงใน dp หรือ showtable
+
+    useEffect(() => {
+        if (numPages === 0) {
+            setCurPage(0)
+        } else {
+            if (curPage === 0) {
+                setCurPage(1)
+            } else if (curPage > numPages) {
+                setCurPage(numPages)
             }
-        }, [curPage, numPages])
+        }
+    }, [curPage, numPages])
 
 
     const Productbox = () => {
@@ -53,10 +55,22 @@ export const Product = () => {
             setShowtable(value); // ปรับค่า showtable เมื่อมีการเลือกค่าใน dropdown
             setCurPage(1); // ให้กลับไปที่หน้าที่ 1 เมื่อเปลี่ยนค่า showtable
         }
-    
+
         const buttonPage = () => {
             const buttons = [];
             const numButtons = Math.ceil(dp.length / showtable); // หาจำนวนหน้าทั้งหมด
+            if (curPage <= numPages && curPage != 1) {
+                buttons.push(
+                    <button
+                        key={9999}
+                        className="btn btn-primary button-spacing"
+                        onClick={() => setCurPage(curPage - 1)}
+                    >
+                        Prev
+                    </button>
+
+                )
+            }
             for (let i = 1; i <= numButtons; i++) {
                 buttons.push(
                     <button
@@ -66,15 +80,29 @@ export const Product = () => {
                     >
                         {i}
                     </button>
-                );
+
+                )
+
+            }
+            if (curPage < numPages) {
+                buttons.push(
+                    <button
+                        key={999}
+                        className="btn btn-primary button-spacing"
+                        onClick={() => setCurPage(curPage + 1)}
+                    >
+                        Next
+                    </button>
+
+                )
             }
             return buttons;
         }
-    
+
         const tableData = dp.map((data, i) => {
             const start = (curPage - 1) * showtable
             const end = start + showtable
-    
+
             if (start <= i && i < end)
                 return (
                     <tr key={data.id}>
@@ -83,15 +111,49 @@ export const Product = () => {
                             <a>{data.P_ID}</a>
                         </td>
                         <td style={{ color: '#63468E' }}>{data.P_NAME}</td>
-                        <td style={{ textAlign: 'center'}} className={data.amount === 0 ? "text-danger" : data.amount <= 15 ? "text-warning" : "text-success"}
->{data.amount}</td>
+                        <td style={{ textAlign: 'center' }} className={data.amount === 0 ? "text-danger" : data.amount <= 15 ? "text-warning" : "text-success"}
+                        >{data.amount}</td>
                     </tr>
                 )
         })
-    
+        const idRef = useRef()
+        const productID = useRef()
+        const productName = useRef()
+        const productAmount = useRef()
+
+        const [show, setShow] = useState(false);
+        const handleClose = () => setShow(false);
+        const handleShow = () => setShow(true);
+
+        const addClick = () =>{
+            setShow(true)
+        }
+
         return (
             <div>
-                <Total amount={amount} />
+
+                 <Modal show={show} onHide={handleClose}>
+                    <Modal.Header closeButton={show}>
+                        <Modal.Title>เพิ่มสินค้า</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        No data
+                        {/* <div>ID : <span ref={idRef}>21</span></div><br />
+                        <div>รหัสสินค้า : <input type="text" ref={productID}/></div><br />
+                        <div>ชื่อสินค้า : <input type="text" ref={productName} /></div><br />
+                        <div>จำนวน : <input type="number" ref={productAmount}/></div><br /> */}
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={handleClose}>
+                            ยกเลิก
+                        </Button>
+                        <Button variant="primary" onClick={handleClose}>
+                            เพิ่ม
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
+
+                <Total amount={amount} name='เพิ่มสินค้า' setShow={addClick}/>
                 <div className="card shadow mb-3">
                     <div className="card-body">
                         <div>
@@ -122,7 +184,7 @@ export const Product = () => {
                             </div>
                             <div style={{ position: 'absolute', bottom: 0, right: '70px', transform: 'translate(50%, 0)', display: 'flex', alignItems: 'center' }}>
                                 <div style={{ marginRight: '10px' }}>จำนวนต่อหน้า</div>
-                                <select style={{right: '0px'}} className="form-select" value={selectedValue} onChange={handleChange}>
+                                <select style={{ right: '0px' }} className="form-select" value={selectedValue} onChange={handleChange}>
                                     <option value={PageValue1}>{PageValue1}</option>
                                     <option value={PageValue2}>{PageValue2}</option>
                                     <option value={PageValue3}>{PageValue3}</option>

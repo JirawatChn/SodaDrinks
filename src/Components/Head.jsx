@@ -5,6 +5,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Dropdown from 'react-bootstrap/Dropdown';
+import Image from "react-bootstrap/Image";
 
 
 export const Head = ({ topbar }) => {
@@ -31,7 +32,7 @@ export const Head = ({ topbar }) => {
                 <Navbar.Collapse className="justify-content-end navbar-nav ml-auto">
 
                     <Navbar.Text className="nav-item dropdown no-arrow mx-1">
-                        <a id="alertsDropdown"> 
+                        <a id="alertsDropdown">
                             <i className="bi bi-bell-fill"></i>
                             <span className="badge badge-danger badge-counter">2</span>
                         </a>
@@ -41,11 +42,24 @@ export const Head = ({ topbar }) => {
                         <div className="divider d-none d-sm-block" ></div>
                     </Navbar.Text>
 
-                    <Navbar.Text className="nav-item dropdown no-arrow" >
-                        <a id="userDropdown" >
-                            <span className="mr-2 d-none d-lg-inline text-gray-900 small">Admin</span>
-                            <i className="bi bi-person-fill"></i>
-                        </a>
+                    <Navbar.Text  >
+                        <Dropdown className="nav-item dropdown no-arrow">
+                            <Dropdown.Toggle variant="etc" id="dropdown-basic">
+                                <span class="mr-2 d-none d-lg-inline text-gray-900 small">Admin</span>
+                                <Image className="img-profile rounded-circle" style={{ width: '25px' }} src="img/Person.jpg" />
+                            </Dropdown.Toggle>
+                            <Dropdown.Menu className="dropdown-menu dropdown-menu-right shadow animated--grow-in" href="#">
+                                <a className="dropdown-item" href="#">
+                                    <i className="bi bi-person-fill mr-2 text-gray-400" ></i>
+                                     Profile
+                                </a>
+                                <NavDropdown.Divider />
+                                <a className="dropdown-item" href="#" >
+                                <i class="bi bi-box-arrow-in-right mr-2 text-gray-400"></i>
+                                    Logout
+                                </a>
+                            </Dropdown.Menu>
+                        </Dropdown>
                     </Navbar.Text>
 
                 </Navbar.Collapse>

@@ -2309,7 +2309,7 @@ textarea.form-control {
   margin-left: -1.25rem;
   outline-style: solid;
   outline-color: rgb(143, 142, 142);
-  outline-width: medium;
+  outline-width: 2.2px;
 }
 
 .form-check-input[disabled]~.form-check-label,
@@ -13686,6 +13686,11 @@ textarea.form-control.is-invalid {
 
 .dropdown-toggle:after {
   content: none;
+}
+
+.nav-item.btn-etc:hover{
+  border-color: red;
+  background-color: red;
 }
 
 .btn-etc:hover {

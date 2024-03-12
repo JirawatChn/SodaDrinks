@@ -45,7 +45,7 @@ export const Head = ({ topbar }) => {
                     <Navbar.Text  >
                         <Dropdown className="nav-item dropdown no-arrow">
                             <Dropdown.Toggle variant="etc" id="dropdown-basic">
-                                <span class="mr-2 d-none d-lg-inline text-gray-900 small">Admin</span>
+                                <span className="mr-2 d-none d-lg-inline text-gray-900 small">Admin</span>
                                 <Image className="img-profile rounded-circle" style={{ width: '25px' }} src="img/Person.jpg" />
                             </Dropdown.Toggle>
                             <Dropdown.Menu className="dropdown-menu dropdown-menu-right shadow animated--grow-in" href="#">
@@ -55,7 +55,7 @@ export const Head = ({ topbar }) => {
                                 </a>
                                 <NavDropdown.Divider />
                                 <a className="dropdown-item" href="#" >
-                                <i class="bi bi-box-arrow-in-right mr-2 text-gray-400"></i>
+                                <i className="bi bi-box-arrow-in-right mr-2 text-gray-400"></i>
                                     Logout
                                 </a>
                             </Dropdown.Menu>

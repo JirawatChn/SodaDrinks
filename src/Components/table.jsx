@@ -1,4 +1,5 @@
-export const Total = ({amount,name,setShow}) => {
+import { Link } from "react-router-dom"
+export const Total = ({ amount, name, address }) => {
     return (
         <div>
             <div className="card shadow mb-3">
@@ -13,12 +14,12 @@ export const Total = ({amount,name,setShow}) => {
                                 placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" />
                         </div>
                     </form>
-                    <div onClick={()=>setShow(true)}>
-                        <a className="btn btn-primary"
+                    <Link to={address}>
+                        <div className="btn btn-primary"
                             style={{ borderRadius: '60px', height: '43px', width: '150px', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end' }}>
                             <span className="text" style={{ margin: 'auto' }}>{name}</span>
-                        </a>
-                    </div>
+                        </div>
+                    </Link>
                 </div>
             </div>
 

@@ -172,70 +172,9 @@ export const Order = ({dataRaw, setDataRaw}) => {
             return buttons;
         }
 
-        const [show, setShow] = useState(false);
-        const handleClose = () => setShow(false);
-        const handleShow = () => setShow(true);
-
-        const idRef = useRef()
-        const orderIDRef = useRef();
-        const orderDateRef = useRef();
-        const productNameRef = useRef();
-        const orderContactRef = useRef();
-
-
-        const addClick = () => {
-            setShow(true)
-        }
-
-        const saveOrder = () => {
-            const order = {
-                id: Number(idRef.current.innerText),
-                ORDER_ID: orderIDRef.current.value || '-',
-                DATE: orderDateRef.current.value || '-',
-                P_NAME: productNameRef.current.value || '-',
-                Contact: orderContactRef.current.value || '-',
-                Status: false
-            }
-            setDataRaw([...dataRaw, order])
-
-            idRef.current.innerText = ''
-            orderIDRef.current.value = ''
-            orderDateRef.current.value = ''
-            productNameRef.current.value = ''
-            orderContactRef.current.value = ''
-            setSavedata(savedata + 1)
-            handleClose()
-        }
-
-
         return (
             <div>
-
-                <Modal show={show} onHide={handleClose}>
-                    <Modal.Header closeButton={show}>
-                        <Modal.Title>เบิกสินค้า</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                        <div>ID : <span ref={idRef}>{dataRaw.reduce((prev, cur) => {
-                            return cur.id > prev ? cur.id : prev
-                        }, 0) + 1}</span></div><br />
-                        <div>รหัสออเดอร์ : <input type="text" ref={orderIDRef} /></div><br />
-                        <div>วันที่ : <input type="date" ref={orderDateRef} /></div><br />
-                        <div>รายการ : <input type="text" ref={productNameRef} /></div><br />
-                        <div>ผู้ติดต่อ	 : <input type="text" ref={orderContactRef} /></div><br />
-
-                    </Modal.Body>
-                    <Modal.Footer>
-                        <Button variant="secondary" onClick={handleClose}>
-                            ยกเลิก
-                        </Button>
-                        <Button variant="primary" onClick={saveOrder}>
-                            เพิ่ม
-                        </Button>
-                    </Modal.Footer>
-                </Modal>
-
-                <Total amount={amount} name='เบิก' setShow={addClick} />
+                <Total amount={amount} name='เบิก' address='/addOrder'/>
                 <div className="card shadow mb-3" >
 
                     <div className="card-body" >
@@ -294,8 +233,7 @@ export const Order = ({dataRaw, setDataRaw}) => {
                 <div id="content">
                     <Head topbar='Order / เบิกสินค้า' />
                     <Body heading='เบิกสินค้า' table={<Orderbox />} />
-                    <div style={{ textAlign: "center" }}>
-                    </div>
+                    <div style={{ textAlign: "center" }}></div>
                 </div>
             </div>
             <div className="loader" id="loader"></div>

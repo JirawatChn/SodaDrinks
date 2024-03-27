@@ -29,7 +29,7 @@ export const Order = ({ dataRaw, setDataRaw }) => {
     const PageValue2 = 10
     const PageValue3 = 20
 
-    const fetchData = fetch_OD()
+    // const fetchData = fetch_OD()
 
     // useEffect(() => {
     //     setDataRaw(fetchData)

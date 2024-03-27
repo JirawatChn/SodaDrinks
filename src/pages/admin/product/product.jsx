@@ -11,8 +11,8 @@ import Modal from 'react-bootstrap/Modal';
 import { Link } from "react-router-dom"
 
 
-export const Product = () => {
-
+export const Product = ({dpRaw}) => {
+    // const [dpRaw, setDpRaw] = useState([])
     const [dp, setDp] = useState([])
     const [amount, setAmount] = useState(0)
 
@@ -25,15 +25,19 @@ export const Product = () => {
     const PageValue2 = 10
     const PageValue3 = 20
 
+    // useEffect(()=>{
+    //     const fetchData = fetch_DP()
+    //     setDpRaw(fetchData)
+    // },[])
+
     useEffect(() => {
-        const fetchData = fetch_DP()
-        setDp(fetchData)
-        setAmount(fetchData.length)
-    }, [])
+        setDp(dpRaw)
+        setAmount(dpRaw.length)
+    }, [dpRaw])
 
     useEffect(() => {
         setNumPages(Math.ceil(dp.length / showtable))
-    }, [dp, showtable]) // เมื่อมีการเปลี่ยนแปลงใน dp หรือ showtable
+    }, [dp, showtable])
 
     useEffect(() => {
         if (numPages === 0) {

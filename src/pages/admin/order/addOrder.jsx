@@ -49,7 +49,7 @@ export const AddOrder = () => {
                                 <div className="col-md-2">
                                     <div className="input-group input-group-sm mb-3">
                                         <input type="text" className="form-control" aria-label="Sizing example input"
-                                            aria-describedby="inputGroup-sizing-sm" defaultValue="OD-0001" />
+                                            aria-describedby="inputGroup-sizing-sm" defaultValue="OD-0001" readOnly/>
                                     </div>
                                 </div>
                             </div>
@@ -65,7 +65,7 @@ export const AddOrder = () => {
                                 <div className="col-md-2">
                                     <div className="input-group input-group-sm mb-3">
                                         <input type="text" className="form-control" aria-label="Sizing example input"
-                                            aria-describedby="inputGroup-sizing-sm" defaultValue="คลังสินค้า" />
+                                            aria-describedby="inputGroup-sizing-sm" defaultValue="คลังสินค้า" readOnly/>
                                     </div>
                                 </div>
                             </div>
@@ -217,7 +217,6 @@ export const AddOrder = () => {
             <div id="content-wrapper" className="d-flex flex-column">
                 <div id="content">
                     <Head topbar='Order / เบิกสินค้า' />
-                    {/* ส่ง back เข้าไปเป็นค่า prop สำหรับ heading ใน Body */}
                     <Body heading={back()} table={<AddOrderBox />} />
                     <div style={{ textAlign: "center" }}></div>
                 </div>

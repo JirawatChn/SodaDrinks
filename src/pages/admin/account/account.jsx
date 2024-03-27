@@ -9,7 +9,7 @@ export const Account = () => {
 
     const Accountbox = () =>{
         return(
-            <Total amount={0} name='+ เพิ่มผู้ใช้งาน'/>
+            <Total amount={0} name='เพิ่มผู้ใช้งาน'/>
         )
     }
 

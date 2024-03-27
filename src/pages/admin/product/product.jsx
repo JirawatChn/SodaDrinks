@@ -8,6 +8,7 @@ import { Footer } from "../../../Components/Footer"
 import { Total } from "../../../Components/table"
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import { Link } from "react-router-dom"
 
 
 export const Product = () => {
@@ -108,7 +109,7 @@ export const Product = () => {
                     <tr key={data.id}>
                         <td style={{ color: '#63468E', textAlign: 'center' }}>{data.id}</td>
                         <td style={{ color: '#63468E', paddingLeft: '50px' }}>
-                            <a>{data.P_ID}</a>
+                            <Link to={'/detailProduct'} style={{ color: '#63468E', textDecoration: 'underline' }}>{data.P_ID}</Link>
                         </td>
                         <td style={{ color: '#63468E' }}>{data.P_NAME}</td>
                         <td style={{ textAlign: 'center' }} className={data.amount === 0 ? "text-danger" : data.amount <= 15 ? "text-warning" : "text-success"}
@@ -116,44 +117,11 @@ export const Product = () => {
                     </tr>
                 )
         })
-        const idRef = useRef()
-        const productID = useRef()
-        const productName = useRef()
-        const productAmount = useRef()
 
-        const [show, setShow] = useState(false);
-        const handleClose = () => setShow(false);
-        const handleShow = () => setShow(true);
-
-        const addClick = () =>{
-            setShow(true)
-        }
 
         return (
             <div>
-
-                 <Modal show={show} onHide={handleClose}>
-                    <Modal.Header closeButton={show}>
-                        <Modal.Title>เพิ่มสินค้า</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                        No data
-                        {/* <div>ID : <span ref={idRef}>21</span></div><br />
-                        <div>รหัสสินค้า : <input type="text" ref={productID}/></div><br />
-                        <div>ชื่อสินค้า : <input type="text" ref={productName} /></div><br />
-                        <div>จำนวน : <input type="number" ref={productAmount}/></div><br /> */}
-                    </Modal.Body>
-                    <Modal.Footer>
-                        <Button variant="secondary" onClick={handleClose}>
-                            ยกเลิก
-                        </Button>
-                        <Button variant="primary" onClick={handleClose}>
-                            เพิ่ม
-                        </Button>
-                    </Modal.Footer>
-                </Modal>
-
-                <Total amount={amount} name='เพิ่มสินค้า' setShow={addClick}/>
+                <Total amount={amount} name='เพิ่มสินค้า' address='/addProduct'/>
                 <div className="card shadow mb-3">
                     <div className="card-body">
                         <div>
@@ -198,17 +166,17 @@ export const Product = () => {
     }
 
     return (
-        // <div id="wrapper">
-        //     <Nav actived='product' iconActive={{opacity: '100%'}}/>
-        //     <div id="content-wrapper" className="d-flex flex-column">
-        //         <div id="content">
-        //             <Head topbar='Product / สินค้า'/>
-        //             <Body heading='สินค้าทั้งหมด' table={<Productbox/>}/>
-        //             <Footer/>
-        //         </div>
-        //     </div>
-        //     <div className="loader" id="loader"></div>
-        // </div>
-        <Layout actived='product' iconActive={{ opacity: '100%' }} topbar='Product / สินค้า' heading='สินค้าทั้งหมด' table={<Productbox />} />
+        <div id="wrapper">
+            <Nav actived='product' iconActive={{opacity: '100%'}}/>
+            <div id="content-wrapper" className="d-flex flex-column">
+                <div id="content">
+                    <Head topbar='Product / สินค้า'/>
+                    <Body heading='สินค้าทั้งหมด' table={<Productbox/>}/>
+                    <Footer/>
+                </div>
+            </div>
+            <div className="loader" id="loader"></div>
+        </div>
+        // <Layout actived='product' iconActive={{ opacity: '100%' }} topbar='Product / สินค้า' heading='สินค้าทั้งหมด' table={<Productbox />} />
     )
 }

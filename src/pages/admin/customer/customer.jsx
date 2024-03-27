@@ -10,7 +10,7 @@ export const Customer = () => {
     
     const Customerbox = () =>{
         return(
-            <Total amount={0} name='+ เพิ่มลูกค้า'/>
+            <Total amount={0} name='เพิ่มลูกค้า'/>
         )
     }
 

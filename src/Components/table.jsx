@@ -8,12 +8,7 @@ export const Total = ({ amount, name, address }) => {
                     <div>
                         <h6 className="m-0 font-weight-bold" style={{ color: 'black' }}>จำนวนรายการทั้งหมด {amount} รายการ</h6>
                     </div>
-                    <form className="form-inline" style={{ paddingRight: '700px' }}>
-                        <div className="input-group">
-                            <input type="text" className="form-control bg-light border-0 small"
-                                placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" />
-                        </div>
-                    </form>
+                   
                     <Link to={address}>
                         <div className="btn btn-primary"
                             style={{ borderRadius: '60px', height: '43px', width: '150px', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end' }}>

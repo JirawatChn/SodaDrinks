@@ -9,10 +9,10 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { Total } from "../../../Components/table"
+import { Link } from "react-router-dom"
 
 
-
-export const Order = ({dataRaw, setDataRaw}) => {
+export const Order = ({ dataRaw, setDataRaw }) => {
     // const [dataRaw, setDataRaw] = useState([])
     const [data, setData] = useState([]);
     const [amount, setAmount] = useState(0);
@@ -35,7 +35,7 @@ export const Order = ({dataRaw, setDataRaw}) => {
     //     setDataRaw(fetchData)
     //     setAmount(data.length)
     // }, [])
-        
+
     useEffect(() => {
         const selectItem = dataRaw.filter((data) => {
             return !onlyWaiting || !data.Status
@@ -67,10 +67,10 @@ export const Order = ({dataRaw, setDataRaw}) => {
         }
     }, [curPage, numPages])
 
-        useEffect(() => {
-            console.log(savedata)
-            setCurPage(numPages+1)
-        }, [savedata])
+    useEffect(() => {
+        console.log(savedata)
+        setCurPage(numPages + 1)
+    }, [savedata])
 
     const ConfirmClick = (id) => {
         const selectedItem = dataRaw.find((data) => {
@@ -96,7 +96,11 @@ export const Order = ({dataRaw, setDataRaw}) => {
             return (
                 <tr key={data.id}>
                     <td style={{ color: '#63468E', textAlign: 'center' }}>{data.id}</td>
-                    <td style={{ color: '#63468E' }}>{data.ORDER_ID}</td>
+                    <td>
+                        <Link to={'/detailOrder'} style={{ color: '#63468E', textDecoration: 'underline' }}>
+                            {data.ORDER_ID}
+                        </Link>
+                    </td>
                     <td style={{ color: '#63468E' }}>{data.DATE}</td>
                     <td style={{ color: '#63468E' }}>{data.P_NAME}</td>
                     <td style={{ color: '#63468E', textAlign: 'center' }}>{data.Contact}</td>
@@ -108,6 +112,7 @@ export const Order = ({dataRaw, setDataRaw}) => {
                                 <i className="bi bi-three-dots-vertical"></i>
                             </Dropdown.Toggle>
                             <Dropdown.Menu>
+                                <Dropdown.Item onClick={() => window.location.href = '/SodaDrinks/detailOrder'} style={{ color: '#3a3b45' }}>ดูภาพรวม</Dropdown.Item>
                                 {!data.Status && <Dropdown.Item href="#/Confirm" onClick={() => ConfirmClick(data.id)}>ยืนยัน</Dropdown.Item>}
                                 <Dropdown.Item href="#/Delete" onClick={() => { DeleteClick(data.id) }}>ลบ</Dropdown.Item>
                             </Dropdown.Menu>
@@ -117,7 +122,7 @@ export const Order = ({dataRaw, setDataRaw}) => {
             )
         }
     }
-    
+
     )
 
     const Orderbox = () => {
@@ -174,7 +179,7 @@ export const Order = ({dataRaw, setDataRaw}) => {
 
         return (
             <div>
-                <Total amount={amount} name='เบิก' address='/addOrder'/>
+                <Total amount={amount} name='เบิก' address='/addOrder' />
                 <div className="card shadow mb-3" >
 
                     <div className="card-body" >

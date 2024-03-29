@@ -17,6 +17,7 @@ import { AddProduct } from './pages/admin/product/addProduct'
 import { DetailProduct } from './pages/admin/product/detailProduct'
 import { fetch_DP } from './Components/data/data_p'
 import { fetch_DV } from './Components/data/data_d'
+import { DetailDelivery } from './pages/admin/delivery/detailDelivery'
 // import 'bootstrap/dist/css/bootstrap.css'
 
 function App() {
@@ -45,6 +46,7 @@ function App() {
               <Route path='/detailOrder' element={<DetailOrder/>} />
               <Route path='/customer' element={<Customer />} />
               <Route path='/delivery' element={<Delivery ddRaw={ddRaw} setDdRaw={setDdRaw}/>} />
+              <Route path='/detailDelivery' element={<DetailDelivery/>} />
               <Route path='/account' element={<Account />} />
           </Routes>
         </BrowserRouter>

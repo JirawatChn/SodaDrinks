@@ -85,7 +85,7 @@ export const Delivery = () => {
                 <tr key={data.id}>
                     <td style={{ color: '#63468E', textAlign: 'center' }}>{data.id}</td>
                     <td>
-                        <Link to={'/detailOrder'} style={{ color: '#63468E', textDecoration: 'underline' }}>
+                        <Link to={'/detailDelivery'} style={{ color: '#63468E', textDecoration: 'underline' }}>
                             {data.Delivery_ID}
                         </Link>
                     </td>

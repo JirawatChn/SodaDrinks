@@ -12,8 +12,6 @@
  */
  @font-face {
   font-family: 'Kanit';
-  font-style: normal;
-  font-weight: 400;
   src: url(https://fonts.gstatic.com/s/kanit/v15/nKKZ-Go6G5tXcraBGwCYdA.woff2) format('woff2');
 }
 :root {

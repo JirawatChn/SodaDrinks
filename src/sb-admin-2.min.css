@@ -10,10 +10,7 @@
  * Copyright 2011-2021 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
- @font-face {
-  font-family: 'Kanit';
-  src: url('https://fonts.googleapis.com/css?family=Kanit') format('woff2');
-}
+ @import url('https://fonts.googleapis.com/css?family=Kanit');
 
 :root {
   --blue: #4e73df;

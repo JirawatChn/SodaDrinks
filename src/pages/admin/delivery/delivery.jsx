@@ -11,29 +11,19 @@ import Dropdown from 'react-bootstrap/Dropdown';
 
 
 
-// export const Delivery = ({ddRaw, setDdRaw}) => {
-export const Delivery = () => {
+export const Delivery = ({ddRaw, setDdRaw ,showtable,setShowtable,curPage,numPages,selectedValue,setSelectedValue,PageValue1,PageValue2,PageValue3,setNumPages,setCurPage,onlyWaiting,setOnlyWaiting}) => {
 
-    const [ddRaw, setDdRaw] = useState([])
+    // const [ddRaw, setDdRaw] = useState([])
     const [dd, setDd] = useState([])
     const [amount, setAmount] = useState(0)
-    const [showtable, setShowtable] = useState(5)
-    const [curPage, setCurPage] = useState(1)
-    const [numPages, setNumPages] = useState(0)
-    const [selectedValue, setSelectedValue] = useState(showtable);
 
-    const [onlyWaiting, setOnlyWaiting] = useState(false)
     const onlyColor = useRef()
 
-    const [savedata, setSavedata] = useState(0)
 
-    const PageValue1 = 5
-    const PageValue2 = 10
-    const PageValue3 = 20
 
-    useEffect(() => {
-        setDdRaw(fetch_DV)
-    }, [])
+    // useEffect(() => {
+    //     setDdRaw(fetch_DV)
+    // }, [])
 
     useEffect(() => {
         const selectItem = ddRaw.filter((data) => {
@@ -101,7 +91,9 @@ export const Delivery = () => {
                                 <i className="bi bi-three-dots-vertical"></i>
                             </Dropdown.Toggle>
                             <Dropdown.Menu>
-                                <Dropdown.Item style={{ color: '#3a3b45' }}>ดูภาพรวม</Dropdown.Item>
+                                <Dropdown.Item as={Link} to="/detailDelivery" style={{ color: '#3a3b45' }}>
+                                    ดูภาพรวม
+                                </Dropdown.Item>
                                 {!data.Status && <Dropdown.Item href="#/Confirm" onClick={() => { ConfirmClick(data.id) }}>ยืนยัน</Dropdown.Item>}
                                 <Dropdown.Item href="#/Delete" onClick={() => { DeleteClick(data.id) }}>ลบ</Dropdown.Item>
                             </Dropdown.Menu>

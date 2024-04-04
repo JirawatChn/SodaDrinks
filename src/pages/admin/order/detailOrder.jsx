@@ -24,8 +24,7 @@ export const DetailOrder = () => {
                         </div>
 
                         <div>
-                            <Link to={'/order'}
-                                style={{ borderRadius: '60px', height: '43px', width: '150px', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', backgroundColor: 'transparent', color: '#63468E', border: 'none' }}>
+                            <Link to={'/order'} style={{color : '#63468E', marginRight: '10px'}}>
                                 <span className="text" style={{ margin: '0 auto' }}>Retrun To Order</span>
                             </Link>
                         </div>

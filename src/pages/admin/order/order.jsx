@@ -12,22 +12,14 @@ import { Total } from "../../../Components/table"
 import { Link } from "react-router-dom"
 
 
-export const Order = ({ dataRaw, setDataRaw }) => {
+export const Order = ({ dataRaw, setDataRaw ,showtable,setShowtable,curPage,numPages,selectedValue,setSelectedValue,PageValue1,PageValue2,PageValue3,setNumPages,setCurPage,onlyWaiting,setOnlyWaiting}) => {
     // const [dataRaw, setDataRaw] = useState([])
     const [data, setData] = useState([]);
     const [amount, setAmount] = useState(0);
-    const [showtable, setShowtable] = useState(5)
-    const [curPage, setCurPage] = useState(1) // เริ่มหน้าเป็นหน้าที่ 1
-    const [numPages, setNumPages] = useState(0)
-    const [selectedValue, setSelectedValue] = useState(showtable);
-    const [onlyWaiting, setOnlyWaiting] = useState(false)
+
     const onlyColor = useRef()
 
     const [savedata, setSavedata] = useState(0)
-
-    const PageValue1 = 5
-    const PageValue2 = 10
-    const PageValue3 = 20
 
     // const fetchData = fetch_OD()
 
@@ -112,7 +104,9 @@ export const Order = ({ dataRaw, setDataRaw }) => {
                                 <i className="bi bi-three-dots-vertical"></i>
                             </Dropdown.Toggle>
                             <Dropdown.Menu>
-                                <Dropdown.Item onClick={() => window.location.href = '/SodaDrinks/detailOrder'} style={{ color: '#3a3b45' }}>ดูภาพรวม</Dropdown.Item>
+                                <Dropdown.Item as={Link} to="/detailOrder" style={{ color: '#3a3b45' }}>
+                                    ดูภาพรวม
+                                </Dropdown.Item>
                                 {!data.Status && <Dropdown.Item href="#/Confirm" onClick={() => ConfirmClick(data.id)}>ยืนยัน</Dropdown.Item>}
                                 <Dropdown.Item href="#/Delete" onClick={() => { DeleteClick(data.id) }}>ลบ</Dropdown.Item>
                             </Dropdown.Menu>

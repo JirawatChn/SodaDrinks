@@ -11,19 +11,12 @@ import Modal from 'react-bootstrap/Modal';
 import { Link } from "react-router-dom"
 
 
-export const Product = ({dpRaw}) => {
+export const Product = ({dpRaw ,showtable,setShowtable,curPage,numPages,selectedValue,setSelectedValue,PageValue1,PageValue2,PageValue3,setNumPages,setCurPage}) => {
     // const [dpRaw, setDpRaw] = useState([])
     const [dp, setDp] = useState([])
     const [amount, setAmount] = useState(0)
 
-    const [showtable, setShowtable] = useState(5)
-    const [curPage, setCurPage] = useState(1) // เริ่มหน้าเป็นหน้าที่ 1
-    const [numPages, setNumPages] = useState(0)
-    const [selectedValue, setSelectedValue] = useState(showtable);
-
-    const PageValue1 = 5
-    const PageValue2 = 10
-    const PageValue3 = 20
+    
 
     // useEffect(()=>{
     //     const fetchData = fetch_DP()

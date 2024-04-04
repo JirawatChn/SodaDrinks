@@ -5,11 +5,11 @@ import { Head } from "../../../Components/Head"
 import { Layout } from "../../../Components/Layout"
 import { Nav } from "../../../Components/Nav"
 import { Total } from "../../../Components/table"
-import { fetch_CM } from "../../../Components/data/data_c"
 import { Link } from "react-router-dom"
+import Dropdown from 'react-bootstrap/Dropdown';
 
 
-export const Customer = ({dcRaw,showtable,setShowtable,curPage,numPages,selectedValue,setSelectedValue,PageValue1,PageValue2,PageValue3,setNumPages,setCurPage}) => {
+export const Customer = ({dcRaw,setDcRaw,showtable,setShowtable,curPage,numPages,selectedValue,setSelectedValue,PageValue1,PageValue2,PageValue3,setNumPages,setCurPage}) => {
     
     const [dc,setDc] = useState([])
     const [amount, setAmount] = useState(0)
@@ -35,6 +35,43 @@ export const Customer = ({dcRaw,showtable,setShowtable,curPage,numPages,selected
         }
     }, [curPage, numPages])
 
+    const DeleteClick = (id) => {
+        const selectedItem = dcRaw.filter((data) => {
+            return data.id !== id
+        })
+        setDcRaw(selectedItem)
+    }
+
+    const tableData = dc.map((data, i) => {
+        const start = (curPage - 1) * showtable
+        const end = start + showtable
+
+        if (start <= i && i < end)
+            return (
+                <tr key={data.id}>
+                    <td style={{ color: '#63468E', textAlign: 'center' }}>{data.id}</td>
+                    <td style={{ color: '#63468E', paddingLeft: '50px' }}>
+                        <Link to={'/detailCustomer'} style={{ color: '#63468E', textDecoration: 'underline' }}>{data.CUS_ID}</Link>
+                    </td>
+                    <td style={{ color: '#63468E'}}>{data.C_NAME}</td>
+                    <td style={{ color: '#63468E', textAlign: 'center' }}>{data.Tel}</td>
+                    <td style={{ color: '#63468E', textAlign: 'center' }}>{data.Email}</td>
+                    <td>
+                        <Dropdown>
+                            <Dropdown.Toggle variant="etc" id="dropdown-basic">
+                                <i className="bi bi-three-dots-vertical"></i>
+                            </Dropdown.Toggle>
+                            <Dropdown.Menu>
+                                <Dropdown.Item as={Link} to="/detailcustomer" style={{ color: '#3a3b45' }}>
+                                    ดูภาพรวม
+                                </Dropdown.Item>
+                                <Dropdown.Item href="#/Delete" onClick={() => { DeleteClick(data.id) }}>ลบ</Dropdown.Item>
+                            </Dropdown.Menu>
+                        </Dropdown>
+                    </td>
+                </tr>
+            )
+    })
 
     const Customerbox = () =>{
 
@@ -88,24 +125,6 @@ export const Customer = ({dcRaw,showtable,setShowtable,curPage,numPages,selected
             return buttons;
         }
 
-        const tableData = dc.map((data, i) => {
-            const start = (curPage - 1) * showtable
-            const end = start + showtable
-
-            if (start <= i && i < end)
-                return (
-                    <tr key={data.id}>
-                        <td style={{ color: '#63468E', textAlign: 'center' }}>{data.id}</td>
-                        <td style={{ color: '#63468E', paddingLeft: '50px' }}>
-                            <Link to={'/detailCustomer'} style={{ color: '#63468E', textDecoration: 'underline' }}>{data.CUS_ID}</Link>
-                        </td>
-                        <td style={{ color: '#63468E'}}>{data.C_NAME}</td>
-                        <td style={{ color: '#63468E', textAlign: 'center' }}>{data.Tel}</td>
-                        <td style={{ color: '#63468E', textAlign: 'center' }}>{data.Email}</td>
-                    </tr>
-                )
-        })
-
         return(
             <>
             <Total amount={amount} name='เพิ่มลูกค้า'/>
@@ -127,6 +146,7 @@ export const Customer = ({dcRaw,showtable,setShowtable,curPage,numPages,selected
                                         <th style={{ width: '23.75%' }}>ชื่อสินค้า</th>
                                         <th style={{ width: '23.75%', textAlign: 'center' }}>เบอร์โทรศัพท์	</th>
                                         <th style={{ width: '23.75%', textAlign: 'center' }}>E-mail</th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody style={{ textAlign: 'left' }}>

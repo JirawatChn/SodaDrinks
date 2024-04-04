@@ -12,7 +12,7 @@ import { Total } from "../../../Components/table"
 import { Link } from "react-router-dom"
 
 
-export const Order = ({ dataRaw, setDataRaw ,showtable,setShowtable,curPage,numPages,selectedValue,setSelectedValue,PageValue1,PageValue2,PageValue3,setNumPages,setCurPage,onlyWaiting,setOnlyWaiting}) => {
+export const Order = ({ dataRaw, setDataRaw, showtable, setShowtable, curPage, numPages, selectedValue, setSelectedValue, PageValue1, PageValue2, PageValue3, setNumPages, setCurPage, onlyWaiting, setOnlyWaiting }) => {
     // const [dataRaw, setDataRaw] = useState([])
     const [data, setData] = useState([]);
     const [amount, setAmount] = useState(0);

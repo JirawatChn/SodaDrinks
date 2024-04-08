@@ -8,15 +8,15 @@ import { Total } from "../../../Components/table"
 import { fetch_DV } from "../../../Components/data/data_d"
 import { Link } from "react-router-dom"
 import Dropdown from 'react-bootstrap/Dropdown';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
 
 
-
-export const Delivery = ({ddRaw, setDdRaw ,showtable,setShowtable,curPage,numPages,selectedValue,setSelectedValue,PageValue1,PageValue2,PageValue3,setNumPages,setCurPage,onlyWaiting,setOnlyWaiting}) => {
+export const Delivery = ({ ddRaw, setDdRaw, showtable, setShowtable, curPage, numPages, selectedValue, setSelectedValue, PageValue1, PageValue2, PageValue3, setNumPages, setCurPage, onlyWaiting, setOnlyWaiting }) => {
 
     // const [ddRaw, setDdRaw] = useState([])
     const [dd, setDd] = useState([])
     const [amount, setAmount] = useState(0)
-
     const onlyColor = useRef()
 
 
@@ -84,7 +84,6 @@ export const Delivery = ({ddRaw, setDdRaw ,showtable,setShowtable,curPage,numPag
                     <td style={{ color: '#63468E', textAlign: 'center' }}>{data.Contact}</td>
                     <td style={{ color: '#63468E', textAlign: 'center' }}>{data.Amount}</td>
                     <td style={{ color: '#63468E', textAlign: 'center' }}>{data.Status ? <span className="text-success">สำเร็จ</span> : <span className="text-warning">กำลังรอ</span>}</td>
-                    {/* <td className="deleteItem"><FontAwesomeIcon icon={faTrash} /> </td> */}
                     <td>
                         <Dropdown>
                             <Dropdown.Toggle variant="etc" id="dropdown-basic">
@@ -157,7 +156,7 @@ export const Delivery = ({ddRaw, setDdRaw ,showtable,setShowtable,curPage,numPag
         }
         return (
             <div>
-                <Total amount={amount} name='ขนส่ง' />
+                <Total amount={amount} name='ขนส่ง'address='/addDelivery' />
                 <div className="card shadow mb-3" >
 
                     <div className="card-body" >

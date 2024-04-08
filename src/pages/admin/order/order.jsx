@@ -97,7 +97,6 @@ export const Order = ({ dataRaw, setDataRaw, showtable, setShowtable, curPage, n
                     <td style={{ color: '#63468E' }}>{data.P_NAME}</td>
                     <td style={{ color: '#63468E', textAlign: 'center' }}>{data.Contact}</td>
                     <td style={{ color: '#63468E', textAlign: 'center' }}>{data.Status ? <span className="text-success">สำเร็จ</span> : <span className="text-warning">กำลังรอ</span>}</td>
-                    {/* <td className="deleteItem"><FontAwesomeIcon icon={faTrash} /> </td> */}
                     <td>
                         <Dropdown>
                             <Dropdown.Toggle variant="etc" id="dropdown-basic">

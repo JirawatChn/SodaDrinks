@@ -7,17 +7,23 @@ import { Nav } from "../../../Components/Nav"
 import { Total } from "../../../Components/table"
 import { Link } from "react-router-dom"
 import Dropdown from 'react-bootstrap/Dropdown';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
 
 
-export const Customer = ({dcRaw,setDcRaw,showtable,setShowtable,curPage,numPages,selectedValue,setSelectedValue,PageValue1,PageValue2,PageValue3,setNumPages,setCurPage}) => {
-    
-    const [dc,setDc] = useState([])
+export const Customer = ({ dcRaw, setDcRaw, showtable, setShowtable, curPage, numPages, selectedValue, setSelectedValue, PageValue1, PageValue2, PageValue3, setNumPages, setCurPage }) => {
+
+    const [dc, setDc] = useState([])
     const [amount, setAmount] = useState(0)
+    const [show, setShow] = useState(false);
 
-    useEffect(()=>{
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
+    useEffect(() => {
         setDc(dcRaw)
         setAmount(dcRaw.length)
-    },[dcRaw])
+    }, [dcRaw])
 
     useEffect(() => {
         setNumPages(Math.ceil(dc.length / showtable))
@@ -53,7 +59,7 @@ export const Customer = ({dcRaw,setDcRaw,showtable,setShowtable,curPage,numPages
                     <td style={{ color: '#63468E', paddingLeft: '50px' }}>
                         <Link to={'/detailCustomer'} style={{ color: '#63468E', textDecoration: 'underline' }}>{data.CUS_ID}</Link>
                     </td>
-                    <td style={{ color: '#63468E'}}>{data.C_NAME}</td>
+                    <td style={{ color: '#63468E' }}>{data.C_NAME}</td>
                     <td style={{ color: '#63468E', textAlign: 'center' }}>{data.Tel}</td>
                     <td style={{ color: '#63468E', textAlign: 'center' }}>{data.Email}</td>
                     <td>
@@ -73,7 +79,8 @@ export const Customer = ({dcRaw,setDcRaw,showtable,setShowtable,curPage,numPages
             )
     })
 
-    const Customerbox = () =>{
+
+    const Customerbox = () => {
 
         const handleChange = (event) => {
             const value = parseInt(event.target.value);
@@ -125,10 +132,180 @@ export const Customer = ({dcRaw,setDcRaw,showtable,setShowtable,curPage,numPages
             return buttons;
         }
 
-        return(
+        return (
             <>
-            <Total amount={amount} name='เพิ่มลูกค้า'/>
-            <div className="card shadow mb-3">
+                <Modal show={show} onHide={handleClose}>
+                    <Modal.Header closeButton>
+                        <Modal.Title style={{ color: 'black' }}>เพิ่มลูกค้าใหม่</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <div className="row">
+                            <div className="col-sm-12">
+                                <div>
+                                    <p style={{ paddingLeft: '50px', color: 'black', fontWeight: '600' }}>
+                                        <img src="./img/Group 53.png" width="40px" height="40px" style={{marginRight: '10px'}}/> ลูกค้า
+                                    </p>
+                                </div>
+                                <div className="row" style={{ paddingLeft: '50px' }}>
+                                    <div className="col-sm-4" style={{ color: '#63468E' }}>
+                                        <div className="input-group input-group-sm mb-3">
+                                            <p>รหัส</p>
+                                        </div>
+                                    </div>
+                                    <div className="col-sm-6" style={{ color: '#63468E' }}>
+                                        <div className="input-group input-group-sm mb-3">
+                                            <input id="txtID" type="text" className="form-control"
+                                                aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"
+                                                placeholder="C0001" readOnly />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="row" style={{ paddingLeft: '50px' }}>
+                                    <div className="col-sm-4" style={{ color: '#63468E' }}>
+                                        <div className="input-group input-group-sm mb-3">
+                                            <p>ชื่อ</p>
+                                            <p style={{ color: 'red' }}>*</p>
+                                        </div>
+                                    </div>
+                                    <div className="col-sm-6" style={{ color: '#63468E' }}>
+                                        <div className="input-group input-group-sm mb-3">
+                                            <input id="txtName" type="text" className="form-control"
+                                                aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"
+                                                placeholder="ตัวอย่างลูกค้า 1" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <p style={{ paddingLeft: '50px', color: 'black', fontWeight: '600' }}>
+                                        <img src="./img/Group 54.png" width="40px" height="40px" style={{marginRight: '10px'}}/> ข้อมูลลูกค้า
+                                    </p>
+                                    <div className="row" style={{ paddingLeft: '50px' }}>
+                                        <div className="col-sm-4" style={{ color: '#63468E' }}>
+                                            <div className="input-group input-group-sm mb-3">
+                                                <p>ชื่อลูกค้า</p>
+                                            </div>
+                                        </div>
+                                        <div className="col-sm-6" style={{ color: '#63468E' }}>
+                                            <div className="input-group input-group-sm mb-3">
+                                                <input id="txtCompany" type="text" className="form-control"
+                                                    aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"
+                                                    placeholder="บริษัท 1" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="row" style={{ paddingLeft: '50px' }}>
+                                    <div className="col-sm-4" style={{ color: '#63468E' }}>
+                                        <div className="input-group input-group-sm mb-3">
+                                            <p>เบอร์โทรศัพท์</p>
+                                        </div>
+                                    </div>
+                                    <div className="col-sm-6" style={{ color: '#63468E' }}>
+                                        <div className="input-group input-group-sm mb-3">
+                                            <input id="txtTel" type="text" className="form-control"
+                                                aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"
+                                                placeholder="062-xxx-xxxx" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="row" style={{ paddingLeft: '50px' }}>
+                                    <div className="col-sm-4" style={{ color: '#63468E' }}>
+                                        <div className="input-group input-group-sm mb-3">
+                                            <p>อีเมล</p>
+                                        </div>
+                                    </div>
+                                    <div className="col-sm-6" style={{ color: '#63468E' }}>
+                                        <div className="input-group input-group-sm mb-3">
+                                            <input id="txtMail" type="text" className="form-control"
+                                                aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"
+                                                placeholder="sg-epk@gmail.com" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="row" style={{ paddingLeft: '50px' }}>
+                                    <div className="col-sm-4" style={{ color: '#63468E' }}>
+                                        <div className="input-group input-group-sm mb-3">
+                                            <p>จังหวัด</p>
+                                        </div>
+                                    </div>
+                                    <div className="col-sm-6" style={{ color: '#63468E' }}>
+                                        <div>
+                                            <div className="input-group input-group-sm mb-3">
+                                                <select className="form-select" style={{ width: '300px' }} id="inputGroupSelect01">
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="row" style={{ paddingLeft: '50px' }}>
+                                    <div className="col-sm-4" style={{ color: '#63468E' }}>
+                                        <div className="input-group input-group-sm mb-3">
+                                            <p>อำเภอ/เขต</p>
+                                        </div>
+                                    </div>
+                                    <div className="col-sm-6" style={{ color: '#63468E' }}>
+                                        <div>
+                                            <div className="input-group input-group-sm mb-3">
+                                                <select className="form-select" style={{ width: '300px' }} id="inputGroupSelect02">
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="row" style={{ paddingLeft: '50px' }}>
+                                    <div className="col-sm-4" style={{ color: '#63468E' }}>
+                                        <div className="input-group input-group-sm mb-3">
+                                            <p>ตำบล/แขวง</p>
+                                        </div>
+                                    </div>
+                                    <div className="col-sm-6" style={{ color: '#63468E' }}>
+                                        <div>
+                                            <div className="input-group input-group-sm mb-3">
+                                                <select className="form-select" style={{ width: '300px' }} id="inputGroupSelect03" >
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="row" style={{ paddingLeft: '50px' }}>
+                                    <div className="col-sm-4" style={{ color: '#63468E' }}>
+                                        <div className="input-group input-group-sm mb-3">
+                                            <p>รหัสไปรษณีย์</p>
+                                        </div>
+                                    </div>
+                                    <div className="col-sm-6" style={{ color: '#63468E' }}>
+                                        <div className="input-group input-group-sm mb-3">
+                                            <div id="zipCodeDisplay" className="form-control">รหัสไปรษณีย์</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="row" style={{ paddingLeft: '50px' }}>
+                                    <div className="col-sm-4" style={{ color: '#63468E' }}>
+                                        <div className="input-group input-group-sm mb-3">
+                                            <p>ที่อยู่</p>
+                                        </div>
+                                    </div>
+                                    <div className="col-sm-6" style={{ color: '#63468E' }}>
+                                        <div className="mb-3">
+                                            <textarea className="form-control" id="txtAddress" rows="5" placeholder="ที่อยู่"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={handleClose}>
+                            Close
+                        </Button>
+                        <Button variant="primary" onClick={handleClose}>
+                            Save Changes
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
+
+                <Total amount={amount} name='เพิ่มลูกค้า' show={show} setShow={setShow} />
+                <div className="card shadow mb-3">
                     <div className="card-body">
                         <div>
                             <p style={{ color: 'black' }}>
@@ -169,18 +346,18 @@ export const Customer = ({dcRaw,setDcRaw,showtable,setShowtable,curPage,numPages
                         </div>
                     </div>
                 </div>
-                </>
+            </>
         )
     }
 
     return (
         <div id="wrapper">
-            <Nav actived='customer' iconActive={{opacity: '100%'}}/>
+            <Nav actived='customer' iconActive={{ opacity: '100%' }} />
             <div id="content-wrapper" className="d-flex flex-column">
                 <div id="content">
-                    <Head topbar='Customer / ลูกค้า'/>
-                    <Body heading='ลูกค้า' table={<Customerbox/>}/>
-                    <Footer/>
+                    <Head topbar='Customer / ลูกค้า' />
+                    <Body heading='ผู้ติดต่อ' table={<Customerbox />} />
+                    <Footer />
                 </div>
             </div>
             <div className="loader" id="loader"></div>

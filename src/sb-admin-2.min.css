@@ -10,10 +10,12 @@
  * Copyright 2011-2021 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
- @font-face {
+
+ /* @font-face {
   font-family: 'Kanit';
   src: url(https://fonts.gstatic.com/s/kanit/v15/nKKZ-Go6G5tXcraBGwCYdA.woff2) format('woff2');
-}
+} */
+
 :root {
   --blue: #4e73df;
   --indigo: #6610f2;
@@ -50,7 +52,7 @@
 }
 
 html {
-  font-family: "Kanit", sans-serif;
+  font-family: "Kanit";
   line-height: 1.15;
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
@@ -77,7 +79,7 @@ body {
   line-height: 1.5;
   color: #858796;
   text-align: left;
-  background-color: #fff;
+  background-color: #f8f9fd;
   margin: 0;
   padding: 0;
   overflow: auto;
@@ -6441,10 +6443,9 @@ a.close.disabled {
 }
 
 @media (min-width: 992px) {
-
   .modal-lg,
   .modal-xl {
-    max-width: 800px;
+    --bs-modal-width: 800px;
   }
 }
 
@@ -13758,4 +13759,11 @@ textarea.form-control.is-invalid {
 
 [data-bs-theme=dark] .btn-close {
   filter: var(--bs-btn-close-white-filter);
+}
+
+.center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }

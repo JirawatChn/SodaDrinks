@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom"
-export const Total = ({ amount, name, address }) => {
+export const Total = ({ amount, name, address,show,setShow }) => {
+    
     return (
         <div>
             <div className="card shadow mb-3">
@@ -8,10 +9,11 @@ export const Total = ({ amount, name, address }) => {
                     <div>
                         <h6 className="m-0 font-weight-bold" style={{ color: 'black' }}>จำนวนรายการทั้งหมด {amount} รายการ</h6>
                     </div>
-                   
+
                     <Link to={address}>
                         <div className="btn btn-primary"
-                            style={{ borderRadius: '60px', height: '43px', width: '150px', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end' }}>
+                            style={{ borderRadius: '60px', height: '43px', width: '150px', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end' }}
+                            onClick={()=>{setShow(!show)}}>
                             <span className="text" style={{ margin: 'auto' }}>{name}</span>
                         </div>
                     </Link>

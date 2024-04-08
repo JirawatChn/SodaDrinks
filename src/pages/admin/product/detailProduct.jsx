@@ -165,7 +165,7 @@ export const DetailProduct = () => {
                                 รายงาน
                             </p>
                             <div className="table-responsive">
-                                <table className="table table-bordered" id="dataTable" width="100%" cellspacing="0"
+                                <table className="table table-bordered" id="dataTable" width="100%" cellSpacing="0"
                                     style={{ margin: '0 auto' }}>
                                     <thead>
                                         <tr className="center-align" style={{ backgroundColor: '#b8adc979', color: '#63468E' }}>

@@ -3449,7 +3449,7 @@ input[type="button"].btn-block {
   border-radius: 0.35rem;
 }
 
-*/ .dropdown-menu-left {
+.dropdown-menu-left {
   right: auto;
   left: 0;
 }

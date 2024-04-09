@@ -1,11 +1,14 @@
-import React from "react"
+import React, { useState } from "react"
 import { Body } from "../../../Components/Body"
 import { Head } from "../../../Components/Head"
 import { Nav } from "../../../Components/Nav"
 import { Footer } from "../../../Components/Footer"
 import { Link } from "react-router-dom"
+import { Edit } from "../../../Components/component"
 
 export const DetailDelivery = () => {
+
+    const [status, setStatus] = useState(false)
 
     const DetailDeliveryBox = () => {
         return (
@@ -30,6 +33,8 @@ export const DetailDelivery = () => {
                     </div>
                 </div>
 
+                <Edit address={'/editDelivery'}/>
+        
                 <div className="card shadow mb-3">
                     <div className="card-body">
                         <div className="row">
@@ -50,10 +55,7 @@ export const DetailDelivery = () => {
                                             <p>วันที่ :</p>
                                             <p>Tracking No.1 :</p>
                                             <p>สถานะ :</p>
-                                            <p className="confirmationStatus notconfirmationStatus"
-                                                style={{ borderRadius: "60px", height: "43px", width: "150px", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", backgroundColor: "#FFF0C8", color: "#e8b532", textAlign: "center" }}>
-                                                <span className="text confirmationStatus notconfirmationStatus">รอยืนยัน</span>
-                                            </p>
+                                            {status ? <span className="text-light badge-pill badge-success"> สำเร็จ</span> : <span className="text-light badge-pill badge-warning"> กำลังรอ</span>}
                                         </div>
 
                                         <div style={{ float: "left", width: "50%" }}>
@@ -67,7 +69,7 @@ export const DetailDelivery = () => {
                                         <div style={{ clear: "both" }}></div>
                                     </div>
                                     <div style={{ paddingLeft: "550px", top: "100px" }}>
-                                        <a id="liveAlertBtn" className="btn btn-primary"
+                                        <a className="btn btn-primary" onClick={()=> setStatus(true)}
                                             style={{ borderRadius: "10px", height: "42px", width: "200px", display: "flex", flexDirection: "column", justifyContent: "flex-end" }}>
                                             <span className="text" style={{ margin: "0 auto" }}>ยืนยันการเบิกสินค้า</span>
                                         </a>

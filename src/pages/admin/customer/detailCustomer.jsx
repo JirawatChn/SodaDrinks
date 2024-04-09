@@ -3,6 +3,7 @@ import { Body } from "../../../Components/Body"
 import { Head } from "../../../Components/Head"
 import { Nav } from "../../../Components/Nav"
 import { Link } from "react-router-dom"
+import { Edit } from "../../../Components/component"
 
 export const DetailCustomer = () => {
 
@@ -90,9 +91,7 @@ export const DetailCustomer = () => {
                         </div>
                     </div>
                 </div>
-                <Link to={'/editCustomer'} style={{color: '#858796', marginLeft : '10px'}}>
-                <i className="bi bi-pencil-square" style={{marginRight: '10px'}}></i>แก้ไขข้อมูล
-                </Link>
+                <Edit address='/editCustomer'/>
                 <div className="card shadow mb-3">
                     <div className="card-body">
                         <div className="row">

@@ -26,6 +26,8 @@ import { AddCustomer } from './pages/admin/customer/addCustomer'
 import { AddDelivery } from './pages/admin/delivery/addDelivery'
 import { EditCustomer } from './pages/admin/customer/editCustomer'
 import { Profile } from './pages/admin/profile'
+import { EditDelivery } from './pages/admin/delivery/editDelivery'
+import { EditProduct } from './pages/admin/product/editProduct'
 
 function App() {
 
@@ -65,6 +67,7 @@ function App() {
           <Route path='/detailProduct' element={<DetailProduct />} />
           <Route path='/order' element={<Order dataRaw={dataRaw} setDataRaw={setDataRaw} showtable={showtable} setShowtable={setShowtable} curPage={curPage} setCurPage={setCurPage} numPages={numPages} setNumPages={setNumPages} selectedValue={selectedValue} setSelectedValue={setSelectedValue} onlyWaiting={onlyWaiting} setOnlyWaiting={setOnlyWaiting} PageValue1={PageValue1} PageValue2={PageValue2} PageValue3={PageValue3}/>} />
           <Route path='/addOrder' element={<AddOrder />} />
+          <Route path='/editProduct' element={<EditProduct />} />
           <Route path='/detailOrder' element={<DetailOrder />} />
           <Route path='/customer' element={<Customer dcRaw={dcRaw} setDcRaw={setDcRaw} showtable={showtable} setShowtable={setShowtable} curPage={curPage} setCurPage={setCurPage} numPages={numPages} setNumPages={setNumPages} selectedValue={selectedValue} setSelectedValue={setSelectedValue} PageValue1={PageValue1} PageValue2={PageValue2} PageValue3={PageValue3}/>} />
           <Route path='/addCustomer' element={<AddCustomer />} />
@@ -72,6 +75,7 @@ function App() {
           <Route path='/detailCustomer' element={<DetailCustomer />} />
           <Route path='/delivery' element={<Delivery ddRaw={ddRaw} setDdRaw={setDdRaw} showtable={showtable} setShowtable={setShowtable} curPage={curPage} setCurPage={setCurPage} numPages={numPages} setNumPages={setNumPages} selectedValue={selectedValue} setSelectedValue={setSelectedValue} onlyWaiting={onlyWaiting} setOnlyWaiting={setOnlyWaiting} PageValue1={PageValue1} PageValue2={PageValue2} PageValue3={PageValue3}/>} />
           <Route path='/addDelivery' element={<AddDelivery />} />
+          <Route path='/editDelivery' element={<EditDelivery />} />
           <Route path='/detailDelivery' element={<DetailDelivery />} />
           <Route path='/account' element={<Account daRaw={daRaw} setDaRaw={setDaRaw} showtable={showtable} setShowtable={setShowtable} curPage={curPage} setCurPage={setCurPage} numPages={numPages} setNumPages={setNumPages} selectedValue={selectedValue} setSelectedValue={setSelectedValue} PageValue1={PageValue1} PageValue2={PageValue2} PageValue3={PageValue3}/>} />
           <Route path='/detailAccount' element={<DetailAccount/>} />

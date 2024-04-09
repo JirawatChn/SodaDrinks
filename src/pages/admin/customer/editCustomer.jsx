@@ -10,7 +10,7 @@ export const EditCustomer = () => {
     const back = () => {
         return (
             <div>
-                <Link to={'/customer'}>
+                <Link to={'/detailCustomer'}>
                     <p style={{ color: '#63468E', fontSize: '1rem', fontWeight: '400' }}>
                         <i className="bi bi-chevron-left"></i>
                         รายละเอียดผู้ติดต่อ
@@ -27,35 +27,32 @@ export const EditCustomer = () => {
                     <h1 className="h3 font-weight-bold mb-0 text-black-800" style={{ color: 'black' }}>แก้ไขข้อมูล ตัวอย่างลูกค้า 1</h1>
                 </div>
                 <div className="card shadow mb-3">
-                    <div className="card-body" style={{ height: '550px' }}>
+                    <div className="card-body" style={{ height: '600px' }}>
                         <div className="row" style={{ paddingLeft: '20px' }}>
                             <div className="col-md-3">
                                 <p style={{ color: 'black', fontWeight: 'bold', fontSize: '20px' }}>
-                                    <img src="./img/Group 53.png" alt="Group 53" /> ลูกค้า
-                                </p>
-                            </div>
-                            <div className="col-md-2"></div>
-                            <div className="col-md-3">
-                                <p style={{ color: 'black', fontWeight: 'bold', fontSize: '20px' }}>
-                                    <img src="./img/Group 54.png" alt="Group 54" /> ข้อมูลลูกค้า
+                                    <img src="./img/Group 54.png" alt="Group 54" style={{ marginRight: '10px' }} /> ข้อมูลลูกค้า
                                 </p>
                             </div>
                         </div>
                         <br />
+
                         <div className="row" style={{ paddingLeft: '20px' }}>
                             <div className="col-sm-2">
                                 <div style={{ clear: 'both', float: 'left', width: '100%', color: 'black' }}>
                                     <div style={{ display: 'flex', alignItems: 'center' }}>
-                                        <p style={{ marginRight: '10px', fontWeight: '600' }}>รหัส</p>
+                                        <p style={{ marginRight: '10px', fontWeight: '600' }}>รหัสลูกค้า</p>
                                     </div>
                                 </div>
                             </div>
-                            <div className="col-sm-3">
+                            <div className="col-sm-2">
                                 <div className="input-group input-group-sm mb-3">
-                                    <input id="txtID" type="text" className="inputform"
-                                        aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" placeholder="C0001"/>
+                                    <input id="txtCompany" type="text" className="form-control"
+                                        aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" placeholder="C0001" />
                                 </div>
                             </div>
+                        </div>
+                        <div className="row" style={{ paddingLeft: '20px' }}>
                             <div className="col-sm-2">
                                 <div style={{ clear: 'both', float: 'left', width: '100%', color: 'black' }}>
                                     <div style={{ display: 'flex', alignItems: 'center' }}>
@@ -66,24 +63,11 @@ export const EditCustomer = () => {
                             <div className="col-sm-2">
                                 <div className="input-group input-group-sm mb-3">
                                     <input id="txtCompany" type="text" className="form-control"
-                                        aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"  placeholder="บริษัท 1"/>
+                                        aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" placeholder="ตัวอย่างลูกค้า 1" />
                                 </div>
                             </div>
                         </div>
                         <div className="row" style={{ paddingLeft: '20px' }}>
-                            <div className="col-sm-2">
-                                <div style={{ clear: 'both', float: 'left', width: '100%', color: 'black' }}>
-                                    <div style={{ display: 'flex', alignItems: 'center' }}>
-                                        <p style={{ marginRight: '10px', fontWeight: '600' }}>ชื่อ</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="col-sm-3">
-                                <div className="input-group input-group-sm mb-3">
-                                    <input id="txtName" type="text" className="inputform"
-                                        aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" placeholder="ตัวอย่างลูกค้า 1"/>
-                                </div>
-                            </div>
                             <div className="col-sm-2">
                                 <div style={{ clear: 'both', float: 'left', width: '100%', color: 'black' }}>
                                     <div style={{ display: 'flex', alignItems: 'center' }}>
@@ -94,25 +78,11 @@ export const EditCustomer = () => {
                             <div className="col-sm-2">
                                 <div className="input-group input-group-sm mb-3">
                                     <input id="txtTel" type="text" className="form-control"
-                                        aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" placeholder="-"/>
+                                        aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" placeholder="-" />
                                 </div>
                             </div>
                         </div>
                         <div className="row" style={{ paddingLeft: '20px' }}>
-                            <div className="col-sm-2">
-                                <div style={{ clear: 'both', float: 'left', width: '100%', color: 'black' }}>
-                                    <div style={{ display: 'flex', alignItems: 'center' }}>
-                                        <p style={{ marginRight: '10px', fontWeight: '600' }}></p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="col-sm-3">
-                                <div style={{ clear: 'both', float: 'left', width: '100%', color: 'black' }}>
-                                    <div style={{ display: 'flex', alignItems: 'center' }}>
-                                        <p style={{ marginRight: '10px', fontWeight: '600' }}></p>
-                                    </div>
-                                </div>
-                            </div>
                             <div className="col-sm-2">
                                 <div style={{ clear: 'both', float: 'left', width: '100%', color: 'black' }}>
                                     <div style={{ display: 'flex', alignItems: 'center' }}>
@@ -123,25 +93,11 @@ export const EditCustomer = () => {
                             <div className="col-sm-2">
                                 <div className="input-group input-group-sm mb-3">
                                     <input id="txtMail" type="text" className="form-control"
-                                        aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" placeholder="-"/>
+                                        aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" placeholder="-" />
                                 </div>
                             </div>
                         </div>
                         <div className="row" style={{ paddingLeft: '20px' }}>
-                            <div className="col-sm-2">
-                                <div style={{ clear: 'both', float: 'left', width: '100%', color: 'black' }}>
-                                    <div style={{ display: 'flex', alignItems: 'center' }}>
-                                        <p style={{ marginRight: '10px', fontWeight: '600' }}></p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="col-sm-3">
-                                <div style={{ clear: 'both', float: 'left', width: '100%', color: 'black' }}>
-                                    <div style={{ display: 'flex', alignItems: 'center' }}>
-                                        <p style={{ marginRight: '10px', fontWeight: '600' }}></p>
-                                    </div>
-                                </div>
-                            </div>
                             <div className="col-sm-2">
                                 <div style={{ clear: 'both', float: 'left', width: '100%', color: 'black' }}>
                                     <div style={{ display: 'flex', alignItems: 'center' }}>
@@ -159,21 +115,7 @@ export const EditCustomer = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="row" style={{ paddingLeft: '20px' }}>
-                            <div className="col-sm-2">
-                                <div style={{ clear: 'both', float: 'left', width: '100%', color: 'black' }}>
-                                    <div style={{ display: 'flex', alignItems: 'center' }}>
-                                        <p style={{ marginRight: '10px', fontWeight: '600' }}></p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="col-sm-3">
-                                <div style={{ clear: 'both', float: 'left', width: '100%', color: 'black' }}>
-                                    <div style={{ display: 'flex', alignItems: 'center' }}>
-                                        <p style={{ marginRight: '10px', fontWeight: '600' }}></p>
-                                    </div>
-                                </div>
-                            </div>
+                        <div className="row" style={{ paddingLeft: '20px' }}>   
                             <div className="col-sm-2">
                                 <div style={{ clear: 'both', float: 'left', width: '100%', color: 'black' }}>
                                     <div style={{ display: 'flex', alignItems: 'center' }}>
@@ -191,21 +133,7 @@ export const EditCustomer = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="row" style={{ paddingLeft: '20px' }}>
-                            <div className="col-sm-2">
-                                <div style={{ clear: 'both', float: 'left', width: '100%', color: 'black' }}>
-                                    <div style={{ display: 'flex', alignItems: 'center' }}>
-                                        <p style={{ marginRight: '10px', fontWeight: '600' }}></p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="col-sm-3">
-                                <div style={{ clear: 'both', float: 'left', width: '100%', color: 'black' }}>
-                                    <div style={{ display: 'flex', alignItems: 'center' }}>
-                                        <p style={{ marginRight: '10px', fontWeight: '600' }}></p>
-                                    </div>
-                                </div>
-                            </div>
+                        <div className="row" style={{ paddingLeft: '20px' }}>   
                             <div className="col-sm-2">
                                 <div style={{ clear: 'both', float: 'left', width: '100%', color: 'black' }}>
                                     <div style={{ display: 'flex', alignItems: 'center' }}>
@@ -223,21 +151,7 @@ export const EditCustomer = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="row" style={{ paddingLeft: '20px' }}>
-                            <div className="col-sm-2">
-                                <div style={{ clear: 'both', float: 'left', width: '100%', color: 'black' }}>
-                                    <div style={{ display: 'flex', alignItems: 'center' }}>
-                                        <p style={{ marginRight: '10px', fontWeight: '600' }}></p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="col-sm-3">
-                                <div style={{ clear: 'both', float: 'left', width: '100%', color: 'black' }}>
-                                    <div style={{ display: 'flex', alignItems: 'center' }}>
-                                        <p style={{ marginRight: '10px', fontWeight: '600' }}></p>
-                                    </div>
-                                </div>
-                            </div>
+                        <div className="row" style={{ paddingLeft: '20px' }}> 
                             <div className="col-sm-2">
                                 <div style={{ clear: 'both', float: 'left', width: '100%', color: 'black' }}>
                                     <div style={{ display: 'flex', alignItems: 'center' }}>
@@ -248,25 +162,11 @@ export const EditCustomer = () => {
                             <div className="col-sm-2">
                                 <div className="input-group input-group-sm mb-3">
                                     <input id="txtPostID" type="text" className="form-control"
-                                        aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" placeholder="11130"/>
+                                        aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" placeholder="11130" />
                                 </div>
                             </div>
                         </div>
-                        <div className="row" style={{ paddingLeft: '20px' }}>
-                            <div className="col-sm-2">
-                                <div style={{ clear: 'both', float: 'left', width: '100%', color: 'black' }}>
-                                    <div style={{ display: 'flex', alignItems: 'center' }}>
-                                        <p style={{ marginRight: '10px', fontWeight: '600' }}></p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="col-sm-3">
-                                <div style={{ clear: 'both', float: 'left', width: '100%', color: 'black' }}>
-                                    <div style={{ display: 'flex', alignItems: 'center' }}>
-                                        <p style={{ marginRight: '10px', fontWeight: '600' }}></p>
-                                    </div>
-                                </div>
-                            </div>
+                        <div className="row" style={{ paddingLeft: '20px' }}>       
                             <div className="col-sm-2">
                                 <div style={{ clear: 'both', float: 'left', width: '100%', color: 'black' }}>
                                     <div style={{ display: 'flex', alignItems: 'center' }}>
@@ -277,11 +177,11 @@ export const EditCustomer = () => {
                             <div className="col-sm-2">
                                 <div className="input-group input-group-sm mb-3">
                                     <input id="txtAddress" type="text" className="form-control"
-                                        aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" placeholder="123 วัดชลอ บางกรวย นนทบุรี 11130"/>
+                                        aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" placeholder="123 วัดชลอ บางกรวย นนทบุรี 11130" />
                                 </div>
                             </div>
                         </div>
-                        <div style={{ paddingLeft: '1400px' }}>
+                        <div style={{marginLeft: '380px'}}>
                             <Link to={'/detailCustomer'} id="liveAlertBtn" className="btn btn-primary"
                                 style={{ borderRadius: '60px', height: '43px', width: '150px', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end' }}>
                                 <span className="text" style={{ margin: '0 auto' }}>บันทึกรายการ</span>

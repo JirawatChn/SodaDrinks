@@ -3,6 +3,7 @@ import { Body } from "../../../Components/Body"
 import { Head } from "../../../Components/Head"
 import { Nav } from "../../../Components/Nav"
 import { Link } from "react-router-dom"
+import { Edit } from "../../../Components/component"
 
 export const DetailProduct = () => {
 
@@ -24,7 +25,7 @@ export const DetailProduct = () => {
             <div>
                 <div className="d-sm-flex align-items-center justify-content-between mb-4">
                     <h1 className="h3 font-weight-bold mb-0 text-black-800" style={{ color: 'black' }}>รายละเอียดสินค้า
-                        ข้อมูลตัวอย่าง 1</h1>
+                        ข้อมูลตัวอย่าง 5</h1>
                 </div>
 
                 <div className="row">
@@ -91,7 +92,7 @@ export const DetailProduct = () => {
                         </div>
                     </div>
                 </div>
-
+                <Edit address={'/editProduct'}/>
                 <div className="card shadow mb-3">
                     <div className="card-body">
                         <div className="row">

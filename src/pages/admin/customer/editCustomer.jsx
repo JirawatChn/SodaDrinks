@@ -27,7 +27,7 @@ export const EditCustomer = () => {
                     <h1 className="h3 font-weight-bold mb-0 text-black-800" style={{ color: 'black' }}>แก้ไขข้อมูล ตัวอย่างลูกค้า 1</h1>
                 </div>
                 <div className="card shadow mb-3">
-                    <div className="card-body" style={{ height: '600px' }}>
+                    <div className="card-body" style={{ height: '700px' }}>
                         <div className="row" style={{ paddingLeft: '20px' }}>
                             <div className="col-md-3">
                                 <p style={{ color: 'black', fontWeight: 'bold', fontSize: '20px' }}>
@@ -71,7 +71,37 @@ export const EditCustomer = () => {
                             <div className="col-sm-2">
                                 <div style={{ clear: 'both', float: 'left', width: '100%', color: 'black' }}>
                                     <div style={{ display: 'flex', alignItems: 'center' }}>
-                                        <p style={{ marginRight: '10px', fontWeight: '600' }}>เบอร์โทรศัพท์</p>
+                                        <p style={{ marginRight: '10px', fontWeight: '600' }}>เบอร์โทรศัพท์ 1</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col-sm-2">
+                                <div className="input-group input-group-sm mb-3">
+                                    <input id="txtTel" type="text" className="form-control"
+                                        aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" placeholder="-" />
+                                </div>
+                            </div>
+                        </div>
+                        <div className="row" style={{ paddingLeft: '20px' }}>
+                            <div className="col-sm-2">
+                                <div style={{ clear: 'both', float: 'left', width: '100%', color: 'black' }}>
+                                    <div style={{ display: 'flex', alignItems: 'center' }}>
+                                        <p style={{ marginRight: '10px', fontWeight: '600' }}>เบอร์โทรศัพท์ 2</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col-sm-2">
+                                <div className="input-group input-group-sm mb-3">
+                                    <input id="txtTel" type="text" className="form-control"
+                                        aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" placeholder="-" />
+                                </div>
+                            </div>
+                        </div>
+                        <div className="row" style={{ paddingLeft: '20px' }}>
+                            <div className="col-sm-2">
+                                <div style={{ clear: 'both', float: 'left', width: '100%', color: 'black' }}>
+                                    <div style={{ display: 'flex', alignItems: 'center' }}>
+                                        <p style={{ marginRight: '10px', fontWeight: '600' }}>เบอร์โทรศัพท์ 3</p>
                                     </div>
                                 </div>
                             </div>

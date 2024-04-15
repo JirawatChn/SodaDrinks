@@ -20,6 +20,10 @@ export const Customer = ({ dcRaw, setDcRaw, showtable, setShowtable, curPage, nu
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
+    const limitTel = 2;
+    const [currentTel, setCurrentTel] = useState(2);
+    const [telList, setTelList] = useState([]);
+
     useEffect(() => {
         setDc(dcRaw)
         setAmount(dcRaw.length)
@@ -57,7 +61,19 @@ export const Customer = ({ dcRaw, setDcRaw, showtable, setShowtable, curPage, nu
                 <tr key={data.id}>
                     <td style={{ color: '#63468E', textAlign: 'center' }}>{data.id}</td>
                     <td style={{ color: '#63468E', paddingLeft: '50px' }}>
-                        <Link to={'/detailCustomer'} style={{ color: '#63468E', textDecoration: 'underline' }}>{data.CUS_ID}</Link>
+                        <Link
+                            to={{
+                                pathname: '/detailCustomer',
+                                state: {
+                                    customerId: data.CUS_ID,
+                                    currentTel: currentTel
+                                }
+                            }}
+                            style={{ color: '#63468E', textDecoration: 'underline' }}
+                        >
+                            {data.CUS_ID}
+                        </Link>
+
                     </td>
                     <td style={{ color: '#63468E' }}>{data.C_NAME}</td>
                     <td style={{ color: '#63468E', textAlign: 'center' }}>{data.Tel}</td>
@@ -132,6 +148,45 @@ export const Customer = ({ dcRaw, setDcRaw, showtable, setShowtable, curPage, nu
             return buttons;
         }
 
+        const addTel = () => {
+            if (telList.length < limitTel) {
+                setCurrentTel(prevTel => prevTel + 1);
+                setTelList(prevList => [...prevList, currentTel]);
+            }
+        };
+
+        const labelTel = () => {
+            return telList.map((tel, index) => (
+                <div key={index}>
+                    <div className="row" style={{ paddingLeft: '50px' }}>
+                        <div className="col-sm-4" style={{ color: '#63468E' }}>
+                            <div className="input-group input-group-sm mb-3">
+                                <p>เบอร์โทรศัพท์ {tel}</p>
+                            </div>
+                        </div>
+                        <div className="col-sm-6" style={{ color: '#63468E' }}>
+                            <div className="input-group input-group-sm mb-3">
+                                <input id="txtTel" type="text" className="form-control"
+                                    aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"
+                                    placeholder="062-xxx-xxxx" />
+                            </div>
+                        </div>
+                        <i className="bi bi-dash-circle-fill text-danger hover" style={{ fontSize: '25px' }} onClick={() => { deleteTel(index) }}></i>
+                    </div>
+                </div>
+            ));
+        };
+
+        const deleteTel = () => {
+            if (telList.length > 0) {
+                const updatedList = [...telList];
+                updatedList.pop();
+                setTelList(updatedList);
+                setCurrentTel(prevTel => prevTel - 1);
+            }
+        };
+
+
         return (
             <>
                 <Modal show={show} onHide={handleClose}>
@@ -143,7 +198,7 @@ export const Customer = ({ dcRaw, setDcRaw, showtable, setShowtable, curPage, nu
                             <div className="col-sm-12">
                                 <div>
                                     <p style={{ paddingLeft: '50px', color: 'black', fontWeight: '600' }}>
-                                        <img src="./img/Group 53.png" width="40px" height="40px" style={{marginRight: '10px'}}/> ลูกค้า
+                                        <img src="./img/Group 53.png" width="40px" height="40px" style={{ marginRight: '10px' }} /> ลูกค้า
                                     </p>
                                 </div>
                                 <div className="row" style={{ paddingLeft: '50px' }}>
@@ -177,7 +232,7 @@ export const Customer = ({ dcRaw, setDcRaw, showtable, setShowtable, curPage, nu
                                 </div>
                                 <div>
                                     <p style={{ paddingLeft: '50px', color: 'black', fontWeight: '600' }}>
-                                        <img src="./img/Group 54.png" width="40px" height="40px" style={{marginRight: '10px'}}/> ข้อมูลลูกค้า
+                                        <img src="./img/Group 54.png" width="40px" height="40px" style={{ marginRight: '10px' }} /> ข้อมูลลูกค้า
                                     </p>
                                     <div className="row" style={{ paddingLeft: '50px' }}>
                                         <div className="col-sm-4" style={{ color: '#63468E' }}>
@@ -197,7 +252,7 @@ export const Customer = ({ dcRaw, setDcRaw, showtable, setShowtable, curPage, nu
                                 <div className="row" style={{ paddingLeft: '50px' }}>
                                     <div className="col-sm-4" style={{ color: '#63468E' }}>
                                         <div className="input-group input-group-sm mb-3">
-                                            <p>เบอร์โทรศัพท์ 1</p>
+                                            <p>เบอร์โทรศัพท์</p>
                                         </div>
                                     </div>
                                     <div className="col-sm-6" style={{ color: '#63468E' }}>
@@ -207,35 +262,11 @@ export const Customer = ({ dcRaw, setDcRaw, showtable, setShowtable, curPage, nu
                                                 placeholder="062-xxx-xxxx" />
                                         </div>
                                     </div>
+                                    <i className="bi bi-plus-circle-fill hover" style={{ color: '#63468e', fontSize: '25px' }} onClick={() => { addTel() }}></i>
                                 </div>
-                                <div className="row" style={{ paddingLeft: '50px' }}>
-                                    <div className="col-sm-4" style={{ color: '#63468E' }}>
-                                        <div className="input-group input-group-sm mb-3">
-                                            <p>เบอร์โทรศัพท์ 2</p>
-                                        </div>
-                                    </div>
-                                    <div className="col-sm-6" style={{ color: '#63468E' }}>
-                                        <div className="input-group input-group-sm mb-3">
-                                            <input id="txtTel" type="text" className="form-control"
-                                                aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"
-                                                placeholder="062-xxx-xxxx" />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="row" style={{ paddingLeft: '50px' }}>
-                                    <div className="col-sm-4" style={{ color: '#63468E' }}>
-                                        <div className="input-group input-group-sm mb-3">
-                                            <p>เบอร์โทรศัพท์ 3</p>
-                                        </div>
-                                    </div>
-                                    <div className="col-sm-6" style={{ color: '#63468E' }}>
-                                        <div className="input-group input-group-sm mb-3">
-                                            <input id="txtTel" type="text" className="form-control"
-                                                aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"
-                                                placeholder="062-xxx-xxxx" />
-                                        </div>
-                                    </div>
-                                </div>
+
+                                {labelTel()}
+
                                 <div className="row" style={{ paddingLeft: '50px' }}>
                                     <div className="col-sm-4" style={{ color: '#63468E' }}>
                                         <div className="input-group input-group-sm mb-3">

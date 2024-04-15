@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import { Body } from "../../../Components/Body"
 import { Head } from "../../../Components/Head"
 import { Nav } from "../../../Components/Nav"
@@ -6,6 +6,10 @@ import { Footer } from "../../../Components/Footer"
 import { Link } from "react-router-dom"
 
 export const EditCustomer = () => {
+
+    const limitTel = 2;
+    const [currentTel, setCurrentTel] = useState(2);
+    const [telList, setTelList] = useState([]);
 
     const back = () => {
         return (
@@ -21,6 +25,47 @@ export const EditCustomer = () => {
     }
 
     const EditCustomerBox = () => {
+
+        const addTel = () => {
+            if (telList.length < limitTel) {
+                setCurrentTel(prevTel => prevTel + 1);
+                setTelList(prevList => [...prevList, currentTel]);
+            }
+        };
+
+        const labelTel = () => {
+            return telList.map((tel, index) => (
+                <div key={index}>
+                    <div className="row" style={{ paddingLeft: '20px' }}>
+                        <div className="col-sm-2">
+                            <div style={{ clear: 'both', float: 'left', width: '100%', color: 'black' }}>
+                                <div style={{ display: 'flex', alignItems: 'center' }}>
+                                    <p style={{ marginRight: '10px', fontWeight: '600' }}>เบอร์โทรศัพท์ {tel}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-sm-2">
+                            <div className="input-group input-group-sm mb-3">
+                                <input id="txtTel" type="text" className="form-control"
+                                    aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" placeholder="-" />
+                            </div>
+                        </div>
+                        <i className="bi bi-dash-circle-fill text-danger hover" style={{ fontSize: '25px' }} onClick={() => { deleteTel(index) }}></i>
+                    </div>
+                </div>
+            ));
+        };
+
+        const deleteTel = (index) => {
+            if (telList.length > 0) {
+                const updatedList = [...telList];
+                updatedList.splice(index, 1); // ใช้ splice เพื่อลบเบอร์โทรที่ตำแหน่ง index ออกจาก updatedList
+                setTelList(updatedList);
+                setCurrentTel(prevTel => prevTel - 1);
+            }
+        };
+
+
         return (
             <div>
                 <div className="d-sm-flex align-items-center justify-content-between mb-4">
@@ -71,7 +116,7 @@ export const EditCustomer = () => {
                             <div className="col-sm-2">
                                 <div style={{ clear: 'both', float: 'left', width: '100%', color: 'black' }}>
                                     <div style={{ display: 'flex', alignItems: 'center' }}>
-                                        <p style={{ marginRight: '10px', fontWeight: '600' }}>เบอร์โทรศัพท์ 1</p>
+                                        <p style={{ marginRight: '10px', fontWeight: '600' }}>เบอร์โทรศัพท์</p>
                                     </div>
                                 </div>
                             </div>
@@ -81,37 +126,11 @@ export const EditCustomer = () => {
                                         aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" placeholder="-" />
                                 </div>
                             </div>
+                            <i className="bi bi-plus-circle-fill hover" style={{ color: '#63468e', fontSize: '25px' }} onClick={() => { addTel() }}></i>
                         </div>
-                        <div className="row" style={{ paddingLeft: '20px' }}>
-                            <div className="col-sm-2">
-                                <div style={{ clear: 'both', float: 'left', width: '100%', color: 'black' }}>
-                                    <div style={{ display: 'flex', alignItems: 'center' }}>
-                                        <p style={{ marginRight: '10px', fontWeight: '600' }}>เบอร์โทรศัพท์ 2</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="col-sm-2">
-                                <div className="input-group input-group-sm mb-3">
-                                    <input id="txtTel" type="text" className="form-control"
-                                        aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" placeholder="-" />
-                                </div>
-                            </div>
-                        </div>
-                        <div className="row" style={{ paddingLeft: '20px' }}>
-                            <div className="col-sm-2">
-                                <div style={{ clear: 'both', float: 'left', width: '100%', color: 'black' }}>
-                                    <div style={{ display: 'flex', alignItems: 'center' }}>
-                                        <p style={{ marginRight: '10px', fontWeight: '600' }}>เบอร์โทรศัพท์ 3</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="col-sm-2">
-                                <div className="input-group input-group-sm mb-3">
-                                    <input id="txtTel" type="text" className="form-control"
-                                        aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" placeholder="-" />
-                                </div>
-                            </div>
-                        </div>
+
+                        {labelTel()}
+
                         <div className="row" style={{ paddingLeft: '20px' }}>
                             <div className="col-sm-2">
                                 <div style={{ clear: 'both', float: 'left', width: '100%', color: 'black' }}>
@@ -145,7 +164,7 @@ export const EditCustomer = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="row" style={{ paddingLeft: '20px' }}>   
+                        <div className="row" style={{ paddingLeft: '20px' }}>
                             <div className="col-sm-2">
                                 <div style={{ clear: 'both', float: 'left', width: '100%', color: 'black' }}>
                                     <div style={{ display: 'flex', alignItems: 'center' }}>
@@ -163,7 +182,7 @@ export const EditCustomer = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="row" style={{ paddingLeft: '20px' }}>   
+                        <div className="row" style={{ paddingLeft: '20px' }}>
                             <div className="col-sm-2">
                                 <div style={{ clear: 'both', float: 'left', width: '100%', color: 'black' }}>
                                     <div style={{ display: 'flex', alignItems: 'center' }}>
@@ -181,7 +200,7 @@ export const EditCustomer = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="row" style={{ paddingLeft: '20px' }}> 
+                        <div className="row" style={{ paddingLeft: '20px' }}>
                             <div className="col-sm-2">
                                 <div style={{ clear: 'both', float: 'left', width: '100%', color: 'black' }}>
                                     <div style={{ display: 'flex', alignItems: 'center' }}>
@@ -196,7 +215,7 @@ export const EditCustomer = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="row" style={{ paddingLeft: '20px' }}>       
+                        <div className="row" style={{ paddingLeft: '20px' }}>
                             <div className="col-sm-2">
                                 <div style={{ clear: 'both', float: 'left', width: '100%', color: 'black' }}>
                                     <div style={{ display: 'flex', alignItems: 'center' }}>
@@ -211,7 +230,7 @@ export const EditCustomer = () => {
                                 </div>
                             </div>
                         </div>
-                        <div style={{marginLeft: '380px'}}>
+                        <div style={{ marginLeft: '380px' }}>
                             <Link to={'/detailCustomer'} id="liveAlertBtn" className="btn btn-primary"
                                 style={{ borderRadius: '60px', height: '43px', width: '150px', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end' }}>
                                 <span className="text" style={{ margin: '0 auto' }}>บันทึกรายการ</span>

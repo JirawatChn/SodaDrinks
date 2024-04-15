@@ -5,7 +5,9 @@ import { Nav } from "../../../Components/Nav"
 import { Link } from "react-router-dom"
 import { Edit } from "../../../Components/component"
 
-export const DetailCustomer = () => {
+export const DetailCustomer = ({currentTel}) => {
+
+    console.log(currentTel)
 
     const back = () => {
         return (
@@ -106,16 +108,12 @@ export const DetailCustomer = () => {
                                 <div style={{ display: 'flex' }}>
                                     <div style={{ marginRight: '100px' }}>
                                         <p>ชื่อ</p>
-                                        <p>เบอร์โทรศัพท์ 1</p>
-                                        <p>เบอร์โทรศัพท์ 2</p>
-                                        <p>เบอร์โทรศัพท์ 3</p>
+                                        <p>เบอร์โทรศัพท์</p>
                                         <p>อีเมล</p>
                                         <p>ที่อยู่</p>
                                     </div>
                                     <div style={{color :'black'}}>
                                         <p>ตัวอย่างลูกค้า 1</p>
-                                        <p>-</p>
-                                        <p>-</p>
                                         <p>-</p>
                                         <p>-</p>
                                         <p>123 วัดชลอ บางกรวย นนทบุรี 11130</p>

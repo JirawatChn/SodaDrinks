@@ -13765,3 +13765,6 @@ textarea.form-control.is-invalid {
   left: 50%;
   transform: translate(-50%, -50%);
 }
+.hover:hover {
+  cursor: pointer;
+}

@@ -56,12 +56,17 @@ export const Account = ({ daRaw, setDaRaw, showtable, setShowtable, curPage, num
                     <td style={{ color: '#63468E', textAlign: 'center' }}>{data.hiredate}</td>
                     <td style={{ color: '#63468E', textAlign: 'center' }}>{data.Recent}</td>
                     <td style={{ color: '#63468E', textAlign: 'center' }}>{data.Job}</td>
-                    <td style={{ color: '#63468E', textAlign: 'center' }}>{data.Status ? <span className="text-success">กำลังใช้งาน</span> : <span className="text-warning">ออฟไลน์</span>}</td>
+                    <td style={{ color: '#63468E', textAlign: 'center' }}>{data.Status ? <span className="text-success">กำลังใช้งาน</span> : <span className="text-muted">ออฟไลน์</span>}</td>
                     <td>
-                        <Dropdown>
-                            <Dropdown.Toggle as={Link} to="/detailAccount"  variant="etc" id="dropdown-basic">
+                    <Dropdown>
+                            <Dropdown.Toggle variant="etc" id="dropdown-basic">
                                 <i className="bi bi-three-dots-vertical"></i>
                             </Dropdown.Toggle>
+                            <Dropdown.Menu>
+                                <Dropdown.Item as={Link} to="/detailAccount" style={{ color: '#3a3b45' }}>
+                                    ดูภาพรวม
+                                </Dropdown.Item>
+                            </Dropdown.Menu>
                         </Dropdown>
                     </td>
                 </tr>

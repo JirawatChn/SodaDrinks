@@ -9,7 +9,7 @@ import { Total } from "../../../Components/table";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Dropdown from "react-bootstrap/Dropdown";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 export const Product = ({
   dpRaw,
@@ -26,14 +26,44 @@ export const Product = ({
   setNumPages,
   setCurPage,
 }) => {
-  // const [dpRaw, setDpRaw] = useState([])
   const [dp, setDp] = useState([]);
   const [amount, setAmount] = useState(0);
+  const [show, setShow] = useState(false);
 
-  // useEffect(()=>{
-  //     const fetchData = fetch_DP()
-  //     setDpRaw(fetchData)
-  // },[])
+  const [product, setProduct] = useState({ product_name: "", id_product: "" });
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  const deleteProduct = (id, name) => {
+    setShow(true);
+    setProduct({ product_name: name, id_product: id });
+  };
+
+  const deleteProductData = async (id_product) => {
+    try {
+      const newData = await fetch("http://localhost:5000/deleteProduct", {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          id_product: id_product,
+        }),
+      });
+      const deletedData = await newData.json();
+      console.log("Product deleted:", deletedData);
+    } catch (error) {
+      console.error("Error deleting product data:", error);
+    }
+  };
+
+  const afterDelete = () => {
+    deleteProductData(product.id_product);
+    setShow(false);
+    window.location.reload();
+  };
 
   useEffect(() => {
     setDp(dpRaw);
@@ -56,81 +86,72 @@ export const Product = ({
     }
   }, [curPage, numPages]);
 
-  const DeleteClick = (id) => {
-    const selectedItem = dpRaw.filter((data) => {
-      return data.id !== id;
-    });
-    setDpRaw(selectedItem);
-  };
-
   const tableData = dp.map((data, i) => {
     const start = (curPage - 1) * showtable;
     const end = start + showtable;
 
     if (start <= i && i < end)
       return (
-        <tr key={data.id}>
-          <td style={{ color: "#63468E", textAlign: "center" }}>{data.id}</td>
+        <tr key={i + 1}>
+          <td style={{ color: "#63468E", textAlign: "center" }}>{i + 1}</td>
           <td style={{ color: "#63468E", paddingLeft: "50px" }}>
             <Link
-              to={"/detailProduct"}
+              to="/detailProduct"
+              state={{
+                id_product: data.id_product,
+                product_name: data.product_name,
+                quantity: data.quantity,
+                id_warehouse: data.id_warehouse,
+                weight: data.weight,
+                size: data.size,
+              }}
               style={{ color: "#63468E", textDecoration: "underline" }}
             >
-              {data.P_ID}
+              {data.id_product}
             </Link>
           </td>
-          <td style={{ color: "#63468E" }}>{data.P_NAME}</td>
+          <td style={{ color: "#63468E" }}>{data.product_name}</td>
           <td
             style={{ textAlign: "center" }}
             className={
-              data.amount === 0
+              data.quantity <= 100
                 ? "text-danger"
-                : data.amount <= 15
+                : data.quantity <= 200
                 ? "text-warning"
                 : "text-success"
             }
           >
-            {data.amount}
+            {data.quantity}
           </td>
-          <td style={{ display: "flex", gap: "5px" }}>
-            <Button
-              style={{
-                background: "#ffcc00",
-                color: "#fff",
-                border: "transparent",
-                width: 52,
-              }}
-              as={Link}
-              to="/editProduct"
-            >
-              <i
-                style={{ width: 26, height: 26 }}
-                className="bi bi-pencil-square"
-              ></i>
+          <td>
+            <Button className="btn-warning">
+              <Link
+                to="/editProduct"
+                state={{
+                  id_product: data.id_product,
+                  product_name: data.product_name,
+                  quantity: data.quantity,
+                  id_warehouse: data.id_warehouse,
+                  weight: data.weight,
+                  size: data.size,
+                }}
+                style={{
+                  color: "#ffffff",
+                }}
+              >
+                <i className="bi bi-pencil-square"></i>
+              </Link>
             </Button>
+          </td>
+          <td>
             <Button
               href="#/Delete"
-              style={{
-                background: "#FF0000",
-                color: "#fff",
-                border: "transparent",
-                width: "52px", // Added quotes to fix syntax
-              }}
+              className="btn-danger"
               onClick={() => {
-                DeleteClick(data.id);
+                deleteProduct(data.id_product, data.product_name);
               }}
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                fill="currentColor"
-                className="bi bi-trash"
-                viewBox="0 0 16 16"
-              >
-                <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z" />
-                <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z" />
-              </svg>
+              <i className="bi bi-trash3"></i>
             </Button>
           </td>
         </tr>
@@ -149,9 +170,10 @@ export const Product = ({
       const buttons = [];
       const numButtons = Math.ceil(dp.length / showtable); // หาจำนวนหน้าทั้งหมด
       if (curPage <= numPages && curPage != 1) {
+        const customKey = "prevButton";
         buttons.push(
           <button
-            key={9999}
+            key={customKey}
             className="btn btn-primary button-spacing"
             onClick={() => setCurPage(curPage - 1)}
           >
@@ -177,7 +199,7 @@ export const Product = ({
       if (curPage < numPages) {
         buttons.push(
           <button
-            key={999}
+            key={9999}
             className="btn btn-primary button-spacing"
             onClick={() => setCurPage(curPage + 1)}
           >
@@ -190,7 +212,35 @@ export const Product = ({
 
     return (
       <div>
-        <Total amount={amount} name="เพิ่มสินค้า" address="/addProduct" />
+        <Modal show={show} onHide={handleClose}>
+          <Modal.Header closeButton>
+            <Modal.Title>ยืนยันการลบสินค้า</Modal.Title>
+          </Modal.Header>
+          <Modal.Body style={{ color: "black" }}>
+            ยืนยันการลบสินค้า {product.product_name}
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleClose}>
+              ปิด
+            </Button>
+            <Button
+              variant="primary"
+              onClick={() => {
+                afterDelete();
+              }}
+            >
+              ยืนยัน
+            </Button>
+          </Modal.Footer>
+        </Modal>
+
+        <Total
+          amount={amount}
+          name="เพิ่มสินค้า"
+          address="/addProduct"
+          setShow={setShow}
+          show={show}
+        />
         <div className="card shadow mb-3">
           <div className="card-body">
             <div>
@@ -216,10 +266,11 @@ export const Product = ({
                     <th style={{ width: "5%", textAlign: "center" }}>#</th>
                     <th style={{ width: "45%", paddingLeft: "50px" }}>รหัส</th>
                     <th style={{ width: "40%" }}>ชื่อสินค้า</th>
-                    <th style={{ width: "10%", textAlign: "center" }}>
+                    <th style={{ width: "8%", textAlign: "center" }}>
                       คงเหลือ
                     </th>
-                    <th></th>
+                    <th style={{ width: "1%", textAlign: "right" }}></th>
+                    <th style={{ width: "1%", textAlign: "right" }}></th>
                   </tr>
                 </thead>
                 <tbody style={{ textAlign: "left" }}>{tableData}</tbody>

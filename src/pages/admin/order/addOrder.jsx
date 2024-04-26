@@ -1,10 +1,8 @@
-import React, { useState } from "react"
+import React from "react"
 import { Body } from "../../../Components/Body"
 import { Head } from "../../../Components/Head"
 import { Nav } from "../../../Components/Nav"
 import { Link } from "react-router-dom"
-import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
 
 export const AddOrder = () => {
     const back = () => {
@@ -20,62 +18,8 @@ export const AddOrder = () => {
         )
     }
     const AddOrderBox = () => {
-
-        const [show, setShow] = useState(false);
-        const handleClose = () => setShow(false);
-        const handleShow = () => setShow(true);
-
-        const Table = () => {
-            return (
-                <tr id="txtTable" style={{ textAlign: 'left' }}>
-                    <td style={{ textAlign: 'center' }}>
-                        <button style={{ fontWeight: '400', width: '80px', height: '25px', lineHeight: '0px' }} onClick={() => { handleShow() }}>
-                            เลือก
-                        </button>
-                    </td>
-
-                    <td>
-                        <input id="txtIDProduct" type="text" placeholder="รหัสสินค้า" />
-                    </td>
-                    <td>
-                        <input id="txtNameProduct" type="text" placeholder="ชื่อสินค้า" />
-                    </td>
-                    <td>
-                        <input id="txtNumber" type="number" placeholder="0" />
-                    </td>
-                    <td style={{ textAlign: 'right' }}>
-                        <button style={{ border: 'none', backgroundColor: 'transparent' }}>
-                            <i className="bi bi-x-lg" style={{ color: 'red' }} />
-                        </button>
-                    </td>
-                </tr>
-            )
-        }
-
-        const orderTable = () => {
-            return (
-                <>
-                <Table/>
-                </>
-            )
-        }
-
         return (
             <div>
-                <Modal show={show} onHide={handleClose}>
-                    <Modal.Header closeButton>
-                        <Modal.Title>Modal heading</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>Woohoo, you are reading this text in a modal!</Modal.Body>
-                    <Modal.Footer>
-                        <Button variant="secondary" onClick={handleClose}>
-                            Close
-                        </Button>
-                        <Button variant="primary" onClick={handleClose}>
-                            Save Changes
-                        </Button>
-                    </Modal.Footer>
-                </Modal>
                 <div>
                     <h1 className="h4 mb-2 " style={{ color: 'black', top: '20px', fontWeight: 'bold' }}>
                         สร้างรายการเบิกสินค้า
@@ -105,7 +49,7 @@ export const AddOrder = () => {
                                 <div className="col-md-2">
                                     <div className="input-group input-group-sm mb-3">
                                         <input type="text" className="form-control" aria-label="Sizing example input"
-                                            aria-describedby="inputGroup-sizing-sm" defaultValue="OD-0001" readOnly />
+                                            aria-describedby="inputGroup-sizing-sm" defaultValue="OD-0001" readOnly/>
                                     </div>
                                 </div>
                             </div>
@@ -121,7 +65,7 @@ export const AddOrder = () => {
                                 <div className="col-md-2">
                                     <div className="input-group input-group-sm mb-3">
                                         <input type="text" className="form-control" aria-label="Sizing example input"
-                                            aria-describedby="inputGroup-sizing-sm" defaultValue="คลังสินค้า" readOnly />
+                                            aria-describedby="inputGroup-sizing-sm" defaultValue="คลังสินค้า" readOnly/>
                                     </div>
                                 </div>
                             </div>
@@ -202,8 +146,29 @@ export const AddOrder = () => {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {orderTable()}
+                                        <tr id="txtTable" style={{ textAlign: 'left' }}>
+                                            <td style={{ textAlign: 'center' }}>
+                                                <button style={{ fontWeight: '400', width: '80px', height: '25px', lineHeight: '0px' }}>
+                                                    เลือก
+                                                </button>
+                                            </td>
 
+                                            <td>
+                                                <input id="txtIDProduct" type="text" placeholder="รหัสสินค้า" />
+                                            </td>
+                                            <td>
+                                                <input id="txtNameProduct" type="text" placeholder="ชื่อสินค้า" />
+                                            </td>
+                                            <td>
+                                                <input id="txtNumber" type="number" placeholder="0" />
+                                            </td>
+                                            <td style={{ textAlign: 'right' }}>
+                                                <button style={{ border: 'none', backgroundColor: 'transparent' }}>
+                                                    <i className="bi bi-x-lg" style={{ color: 'red' }} />
+                                                </button>
+                                            </td>
+
+                                        </tr>
                                         <tr>
                                             <td >
                                                 <button style={{ border: 'none', backgroundColor: 'transparent' }}>
@@ -227,7 +192,7 @@ export const AddOrder = () => {
                                             <td></td>
                                             <td></td>
                                             <td>
-                                                <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '100px' }}>
+                                                <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '100px'}}>
                                                     <a href="#" id="liveAlertBtn" className="btn btn-primary" style={{ borderRadius: '60px', height: '43px', width: '150px', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end' }}>
                                                         <span className="text" style={{ margin: '0 auto' }}>สร้างรายการ</span>
                                                     </a>

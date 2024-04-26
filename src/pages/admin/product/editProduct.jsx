@@ -10,10 +10,10 @@ export const EditProduct = () => {
     const back = () => {
         return (
             <div>
-                <Link to={'/detailProduct'}>
+                <Link to={'/product'}>
                     <p style={{ color: '#63468E', fontSize: '1rem', fontWeight: '400' }}>
                         <i className="bi bi-chevron-left"></i>
-                        รายละเอียดสินค้า
+                        สินค้าทั้งหมด
                     </p>
                 </Link>
             </div>

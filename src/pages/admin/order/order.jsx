@@ -25,17 +25,16 @@ export const Order = ({
   PageValue3,
   setNumPages,
   setCurPage,
- 
+  onlyWaiting,
+  setOnlyWaiting,
 }) => {
   // const [dataRaw, setDataRaw] = useState([])
   const [data, setData] = useState([]);
   const [amount, setAmount] = useState(0);
-  const [show, setShow] = useState(false);
+
   const onlyColor = useRef();
 
   const [savedata, setSavedata] = useState(0);
-  const [onlyWaiting, setOnlyWaiting] = useState(false);
-
 
   // const fetchData = fetch_OD()
 
@@ -46,7 +45,7 @@ export const Order = ({
 
   useEffect(() => {
     const selectItem = dataRaw.filter((data) => {
-      return !onlyWaiting || !data.order_status;
+      return !onlyWaiting || !data.Status;
     });
     setData(selectItem);
     setAmount(selectItem.length);
@@ -76,7 +75,7 @@ export const Order = ({
   }, [curPage, numPages]);
 
   useEffect(() => {
-    // console.log(savedata);
+    console.log(savedata);
     setCurPage(numPages + 1);
   }, [savedata]);
 
@@ -102,48 +101,72 @@ export const Order = ({
 
     if (start <= i && i < end) {
       return (
-        <tr key={i+1}>
-          <td style={{ color: "#63468E", textAlign: "center" }}>{i + 1}</td>
+        <tr key={data.id}>
+          <td style={{ color: "#63468E", textAlign: "center" }}>{data.id}</td>
           <td>
             <Link
               to={"/detailOrder"}
               style={{ color: "#63468E", textDecoration: "underline" }}
             >
-              {data.id_order}
+              {data.ORDER_ID}
             </Link>
           </td>
-          <td style={{ color: "#63468E" }}>{data.day}</td>
-          <td style={{ color: "#63468E" }}>{data.product_name}</td>
-          <td style={{ color: "#63468E", textAlign: "left" }}>{data.name}</td>
+          <td style={{ color: "#63468E" }}>{data.DATE}</td>
+          <td style={{ color: "#63468E" }}>{data.P_NAME}</td>
           <td style={{ color: "#63468E", textAlign: "center" }}>
-            {data.order_status == 'Pending' ? (
+            {data.Contact}
+          </td>
+          <td style={{ color: "#63468E", textAlign: "center" }}>
+            {data.Status ? (
               <span className="text-success">สำเร็จ</span>
             ) : (
               <span className="text-warning">กำลังรอ</span>
             )}
           </td>
-          <td>
-            {data.order_status ? (
-              ""
-            ) : (
-              <Button
-                className="btn-success"
-                href="#/Confirm"
-                onClick={() => ConfirmClick(data.id)}
+          <td style={{ display: "flex", gap: "5px" }}>
+            <Button
+              style={{
+                background: "#28a745",
+                color: "#fff",
+                border: "transparent",
+              }}
+              href="#/Confirm"
+              onClick={() => ConfirmClick(data.id)}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="26"
+                height="26"
+                fill="currentColor"
+                className="bi bi-check"
+                viewBox="0 0 16 16"
               >
-                <i className="bi bi-check-lg"></i>
-              </Button>
-            )}
-          </td>
-          <td>
+                <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z" />
+              </svg>
+            </Button>
             <Button
               href="#/Delete"
-              className="btn-danger"
+              style={{
+                background: "#FF0000",
+                color: "#fff",
+                border: "transparent",
+                width: "52px", // Added quotes to fix syntax
+              }}
               onClick={() => {
                 DeleteClick(data.id);
               }}
             >
-              <i className="bi bi-trash3"></i>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                className="bi bi-trash"
+                viewBox="0 0 16 16"
+              >
+                <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z" />
+                <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z" />
+              </svg>
             </Button>
           </td>
         </tr>
@@ -165,7 +188,7 @@ export const Order = ({
       if (curPage <= numPages && curPage != 1) {
         buttons.push(
           <button
-            key={`prev-${curPage}`}
+            key={9999}
             className="btn btn-primary button-spacing"
             onClick={() => setCurPage(curPage - 1)}
           >
@@ -173,7 +196,6 @@ export const Order = ({
           </button>
         );
       }
-
       for (let i = 1; i <= numButtons; i++) {
         buttons.push(
           <button
@@ -205,13 +227,7 @@ export const Order = ({
 
     return (
       <div>
-        <Total
-          amount={amount}
-          name="เบิก"
-          address="/addOrder"
-          setShow={setShow}
-          show={show}
-        />
+        <Total amount={amount} name="เบิก" address="/addOrder" />
         <div className="card shadow mb-3">
           <div className="card-body">
             <div>
@@ -261,14 +277,15 @@ export const Order = ({
                     }}
                   >
                     <th style={{ width: "5%", textAlign: "center" }}>#</th>
-                    <th style={{ width: "20%" }}>รหัสออเดอร์</th>
-                    <th style={{ width: "25%" }}>วันที่</th>
-                    <th style={{ width: "25%" }}>รายการ</th>
-                    <th style={{ width: "15%", textAlign: "left" }}>
+                    <th style={{ width: "21.25%", paddingLeft: "30px" }}>
+                      รหัสออเดอร์
+                    </th>
+                    <th style={{ width: "21.25%" }}>วันที่</th>
+                    <th style={{ width: "21.25%" }}>รายการ</th>
+                    <th style={{ width: "21.25%", textAlign: "center" }}>
                       ผู้ติดต่อ
                     </th>
                     <th style={{ width: "10%", textAlign: "center" }}>สถานะ</th>
-                    <th></th>
                     <th></th>
                   </tr>
                 </thead>

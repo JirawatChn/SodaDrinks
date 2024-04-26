@@ -70,34 +70,66 @@ export const Customer = ({
 
     if (start <= i && i < end)
       return (
-        <tr key={i+1}>
-          <td style={{ color: "#63468E", textAlign: "center" }}>{i+1}</td>
+        <tr key={data.id}>
+          <td style={{ color: "#63468E", textAlign: "center" }}>{data.id}</td>
           <td style={{ color: "#63468E", paddingLeft: "50px" }}>
-            <Link to={'/detailCustomer'}
+            <Link
+              to={{
+                pathname: "/detailCustomer",
+                state: {
+                  customerId: data.CUS_ID,
+                  currentTel: currentTel,
+                },
+              }}
               style={{ color: "#63468E", textDecoration: "underline" }}
             >
-              {data.id_Customer}
+              {data.CUS_ID}
             </Link>
           </td>
-          <td style={{ color: "#63468E" }}>{data.name}</td>
-          <td style={{ color: "#63468E", textAlign: "center" }}>{data.tel}</td>
+          <td style={{ color: "#63468E" }}>{data.C_NAME}</td>
+          <td style={{ color: "#63468E", textAlign: "center" }}>{data.Tel}</td>
           <td style={{ color: "#63468E", textAlign: "center" }}>
-            {data.email}
+            {data.Email}
           </td>
-          <td>
-            <Button as={Link} to="/editCustomer" className="btn-warning">
-              <i className="bi bi-pencil-square"></i>
+          <td style={{ display: "flex", gap: "5px" }}>
+            <Button
+              style={{
+                background: "#ffcc00",
+                color: "#fff",
+                border: "transparent",
+                width: 52,
+              }}
+              as={Link}
+              to="/editProduct"
+            >
+              <i
+                style={{ width: 26, height: 26 }}
+                className="bi bi-pencil-square"
+              ></i>
             </Button>
-          </td>
-          <td>
             <Button
               href="#/Delete"
-              className="btn-danger"
+              style={{
+                background: "#FF0000",
+                color: "#fff",
+                border: "transparent",
+                width: "52px", // Added quotes to fix syntax
+              }}
               onClick={() => {
                 DeleteClick(data.id);
               }}
             >
-              <i className="bi bi-trash3"></i>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                className="bi bi-trash"
+                viewBox="0 0 16 16"
+              >
+                <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z" />
+                <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z" />
+              </svg>
             </Button>
           </td>
         </tr>
@@ -486,14 +518,13 @@ export const Customer = ({
                     <th style={{ width: "23.75%", paddingLeft: "50px" }}>
                       รหัส
                     </th>
-                    <th style={{ width: "23.75%" }}>ชื่อลูกค้า</th>
+                    <th style={{ width: "23.75%" }}>ชื่อสินค้า</th>
                     <th style={{ width: "23.75%", textAlign: "center" }}>
                       เบอร์โทรศัพท์{" "}
                     </th>
                     <th style={{ width: "23.75%", textAlign: "center" }}>
                       E-mail
                     </th>
-                    <th></th>
                     <th></th>
                   </tr>
                 </thead>
